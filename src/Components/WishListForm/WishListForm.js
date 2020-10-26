@@ -1,22 +1,61 @@
 import React, {useState} from 'react';
+import {GlobalCtx} from '../../App'
 import './WishListForm.scss';
 
 export default function WishListForm(props) {
 
-	//props.item in default useState here should create a blank form
-	const [formData, setFormData] = useState(props.item)
+	const {gState, setGState} = React.useContext(GlobalCtx)
+	
+///GET index of wishlist items
+///this should actually go in WishList component
+	// const {gState, setGState} = React.useContext(GlobalCtx)	
+	const {url, token} = gState	
+	const [wishList, setWishList] = React.useState(null)
+	const getWishList = async () => {
+		const response = await fetch(url + "/wishlist/", {
+			method: "get",
+			headers: {
+				Authorization: "bearer" + token
+			}
+		})
+		const json = await response.json()
+		setWishList(json)
+	}
+	React.useEffect(() => {
+		getWishList()
+	}, [])
+//////////////////////////////////////////
 
+	//props.item in default useState here is to create a blank form
+	const [formData, setFormData] = React.useState(props.item)
+
+	// const input = React.useRef(null)
+
+
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		const {title, category, time_minutes} = formData
+
+		fetch(url + "/wishlist/", {
+			method: "post",
+			headers: {
+				"Content-Type": "application/json",
+				"Authorization": `bearer ${token}`
+			},
+			body: JSON.stringify({title, category, time_minutes})
+		})
+		.then(response => response.json())
+		.then(data => {
+			console.log(data)
+		})
+		props.handleSubmit(data)
+	}
+	
 	const handleChange = (e) => {
 		const key = e.target.name;
 		const value = e.target.value;
 		setFormData({...formData, [key]: value})
 	}
-
-	const handleSubmit = (event) => {
-		event.preventDefault();
-		props.handleSubmit(formData)
-	}
-	
 
 	return (
 		<div className='wishlist-form'>
@@ -25,21 +64,21 @@ export default function WishListForm(props) {
 				<input
 					type='text'
 					name='title'
-					value={props.wishlist.title} //or try {formData.title}
+					value={formData.title}
 					placeholder='Title'
 					onChange={handleChange}
 				/>
 				<input
 					type='text'
 					name='category'
-					value={props.wishlist.category} //or try {formData.category}
+					value={formData.category}
 					placeholder='Category'
 					onChange={handleChange}
 				/>
 				<input
 					type='text'
 					name='time'
-					value={props.wishlist.time_minutes} //or try {formData.time_minutes}
+					value={formData.time_minutes}
 					placeholder='Time'
 					onChange={handleChange}
 				/>
