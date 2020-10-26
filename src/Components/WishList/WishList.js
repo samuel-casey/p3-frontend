@@ -1,61 +1,85 @@
-import React from 'react';
-import {Link} from 'react-router-dom'
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import './WishList.scss';
-
+import { UserContext } from '../../App';
 
 export default function WishList(props) {
+	const currentUser = useContext(UserContext);
+	// FOR TESTING ONLY - TO BE DELETED////////////
+	const wishList = [
+		{
+			title: 'walk',
+			time_minutes: 15,
+			category: 'exercise',
+		},
+		{
+			title: 'meditate',
+			time_minutes: 15,
+			category: 'relax',
+		},
+	];
+	/////////////////////////////
 
-// FOR TESTING ONLY - TO BE DELETED////////////
-	// const wishList = [{
-	// 	title: "walk",
-	// 	time_minutes: 15,
-	// 	category: "exercise"
-	// },
-	// {
-	// 	title: "meditate",
-	// 	time_minutes: 15,
-	// 	category: "relax"
-	// }]
-/////////////////////////////
-
-	//FOR TESTING .MAP() ONLY// const wishlist = wishList.map((item, index) => {
-	const wishlist = props.wishList.map((item, index) => {
-		return(
+	const wishlist = wishList.map((item, index) => {
+		// const wishlist = props.wishList.map((item, index) => {
+		return (
 			<>
-			
-			<div className='list' key={index}>
-				<div className='item-info'>
-					<p className='title'>{item.title}</p>
-					<div className='second-row'>
-						<p className='time'>{item.time_minutes}</p>
-						<p className='category'>{item.category}</p>
+				{currentUser.email}
+				<div className='list' key={index}>
+					<div className='item-info'>
+						<p className='title'>{item.title}</p>
+						<div className='second-row'>
+							<p className='time'>{item.time_minutes}</p>
+							<p className='category'>{item.category}</p>
+						</div>
+					</div>
+					<div className='item-btns'>
+						<button
+							className='item-btns edit'
+							onClick={() => {
+								props.selectItem(item);
+								props.history.push('/edit');
+							}}>
+							Edit
+						</button>
+
+						<button
+							className='item-btns delete'
+							onClick={() => {
+								props.handleDelete(item);
+							}}>
+							Delete
+						</button>
+
+						<button
+							className='item-btns completed'
+							onClick={() => {
+								props.handleCompleted(item);
+							}}>
+							Done
+						</button>
+
+						<button
+							className='item-btns like'
+							onClick={() => {
+								props.handleLike(item);
+							}}>
+							Like
+						</button>
 					</div>
 				</div>
-				<div className='item-btns'>
-						<button className='item-btns edit' onClick={() => {
-							props.selectItem(item);
-							props.history.push('/edit')
-							}}>Edit
-							</button>
-						
-						<button className='item-btns delete' onClick={() => {props.handleDelete(item)}}>Delete</button>
-						
-						<button className='item-btns completed' onClick={() => {props.handleCompleted(item)}}>Done</button>
-		
-						<button className='item-btns like' onClick={() => {props.handleLike(item)}}>Like</button>
-				</div>
-			</div>
 			</>
-		)
-	})
+		);
+	});
 
-	const loading = 'Patient pause....'
+	const loading = 'Patient pause....';
 
 	return (
 		<>
 			<div className='page-title'>Wish List</div>
-			{props.wishList.length > 0 ? loading : wishlist}
-			{/*FOR TESTING ONLY: {wishList.length > 0 ? wishlist : loading} */}
+			{/* {props.wishList.length > 0 ? loading : wishlist} */}
+			{/* /// FOR TESTING ONLY //// */}
+			{wishList.length > 0 ? wishlist : loading}
 		</>
-	)
-	}
+	);
+}

@@ -1,1 +1,33 @@
-@import "../../variables.scss"
+@import "../../variables.scss";
+
+.log-in-page {
+    h2 {
+        color: $sca-pink;
+        margin: 1rem auto;
+    }
+
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    align-items: center;
+    margin: 0 auto;
+
+    .log-in-form {
+        display: flex;
+        flex-direction: column;
+        line-height: 2rem;
+
+        input {
+            margin: 0.5rem;
+            background-color: $sca-gray;
+            width: 100%;
+            align-self: center;
+        }
+
+    }
+
+    .form-btn {
+        background-color: $sca-light-blue;
+    }
+    
+}

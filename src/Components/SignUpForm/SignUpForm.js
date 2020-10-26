@@ -23,13 +23,12 @@ export default function SignUpForm(props) {
 		const key = e.target.name;
 		const value = e.target.value;
 		setFormData({ ...formData, [key]: value });
-		console.log(formData);
 	};
 
 	return (
-		<div className='sign-up-form'>
+		<div className='sign-up-page'>
 			<h2>Sign up</h2>
-			<form onSubmit={handleSubmit}>
+			<form className='sign-up-form' onSubmit={handleSubmit}>
 				<input
 					className='form-text-input'
 					type='email'
