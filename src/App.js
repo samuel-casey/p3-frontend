@@ -3,6 +3,7 @@ import './App.scss';
 import Nav from './Components/Nav/Nav';
 import Quote from './Components/Quote/Quote'
 
+
 function App() {
 	return (
 		<div className='App'>
