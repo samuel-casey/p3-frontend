@@ -5,7 +5,7 @@ import './WishList.scss';
 export default function WishList(props) {
 
 // FOR TESTING ONLY - TO BE DELETED////////////
-	// const wishList = [{
+	// const wishlist = [{
 	// 	title: "walk",
 	// 	time_minutes: 15,
 	// 	category: "exercise"
@@ -17,12 +17,12 @@ export default function WishList(props) {
 	// }]
 /////////////////////////////
 
-	//FOR TESTING .MAP() ONLY// const wishlist = wishList.map((item, index) => {
-	const wishlist = props.wishList.map((item, index) => {
+	//FOR TESTING .MAP() ONLY// const wishlist = wishlist.map((item, index) => {
+	const wishlist = props.wishlist.map((item, index) => {
 		return(
 			<>
 			
-			<div className='list' key={index}>
+			<div className='wishlist-item' key={index}>
 				<div className='item-info'>
 					<p className='title'>{item.title}</p>
 					<div className='second-row'>
@@ -53,8 +53,8 @@ export default function WishList(props) {
 	return (
 		<>
 			<div className='page-title'>Wish List</div>
-			{props.wishList.length > 0 ? loading : wishlist}
-			{/*FOR TESTING ONLY: {wishList.length > 0 ? wishlist : loading} */}
+			{props.wishlist.length > 0 ? wishlist : loading}
+			{/*FOR TESTING ONLY: {wishlist.length > 0 ? wishlist : loading} */}
 		</>
 	)
 	}

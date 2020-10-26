@@ -9,21 +9,21 @@ export default function WishListForm(props) {
 ///GET index of wishlist items
 ///this should actually go in WishList component
 	// const {gState, setGState} = React.useContext(GlobalCtx)	
-	const {url, token} = gState	
-	const [wishList, setWishList] = React.useState(null)
-	const getWishList = async () => {
-		const response = await fetch(url + "/wishlist/", {
-			method: "get",
-			headers: {
-				Authorization: "bearer" + token
-			}
-		})
-		const json = await response.json()
-		setWishList(json)
-	}
-	React.useEffect(() => {
-		getWishList()
-	}, [])
+	// const {url, token} = gState	
+	// const [wishList, setWishList] = React.useState(null)
+	// const getWishList = async () => {
+	// 	const response = await fetch(url + "/wishlist/", {
+	// 		method: "get",
+	// 		headers: {
+	// 			Authorization: "bearer" + token
+	// 		}
+	// 	})
+	// 	const json = await response.json()
+	// 	setWishList(json)
+	// }
+	// React.useEffect(() => {
+	// 	getWishList()
+	// }, [])
 //////////////////////////////////////////
 
 	//props.item in default useState here is to create a blank form
