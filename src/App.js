@@ -1,3 +1,4 @@
+import React, { useState, createContext } from 'react';
 import './App.scss';
 import Nav from './Components/Nav/Nav';
 import Quote from './Components/Quote/Quote'
