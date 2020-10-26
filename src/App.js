@@ -1,5 +1,7 @@
+import React, { useState, createContext } from 'react';
 import './App.scss';
 import Nav from './Components/Nav/Nav';
+import SignUpForm from './Components/SignUpForm/SignUpForm';
 
 function App() {
 	return (
