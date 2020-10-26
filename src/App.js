@@ -3,8 +3,9 @@ import Nav from './Components/Nav/Nav';
 import Quote from './Components/Quote/Quote'
 
 
-// DELETE
+// DELETE:
 import WishList from './Components/WishList/WishList'
+////////
 
 function App() {
 	return (
@@ -18,6 +19,8 @@ function App() {
 			
 		{/* DELETE: */}
 			<WishList />
+		{/* /////////// */}
+
 		</div>
 	);
 }

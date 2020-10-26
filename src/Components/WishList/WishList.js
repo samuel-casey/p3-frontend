@@ -6,7 +6,7 @@ import './WishList.scss';
 export default function WishList(props) {
 
 // FOR TESTING////////////
-//REMOVE COMPONENT FROM APP.JS!!!
+//REMOVE COMPONENT FROM APP.JS
 	const wishList = [{
 		title: "walk",
 		time_minutes: 15,
@@ -33,18 +33,17 @@ export default function WishList(props) {
 					</div>
 				</div>
 				<div className='item-btns'>
-					<Link to='/edit'>
-						<button className='item-btns edit' onClick={() => {props.handleUpdate(item)}}>Edit</button>
-					</Link>
-					<Link to='/delete'>
+						<button className='item-btns edit' onClick={() => {
+							props.selectItem(item);
+							props.history.push('/edit')
+							}}>Edit
+							</button>
+						
 						<button className='item-btns delete' onClick={() => {props.handleDelete(item)}}>Delete</button>
-					</Link>
-					<Link to='/completed'>
+						
 						<button className='item-btns completed' onClick={() => {props.handleCompleted(item)}}>Done</button>
-					</Link>
-					<Link to='/like'>
+		
 						<button className='item-btns like' onClick={() => {props.handleLike(item)}}>Like</button>
-					</Link>
 				</div>
 			</div>
 			</>
