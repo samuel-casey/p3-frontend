@@ -27,23 +27,25 @@ export default function WishList(props) {
 			<div className='list' key={index}>
 				<div className='item-info'>
 					<p className='title'>{item.title}</p>
-					<p className='time'>{item.time_minutes}</p>
-					<p className='category'>{item.category}</p>
+					<div className='second-row'>
+						<p className='time'>{item.time_minutes}</p>
+						<p className='category'>{item.category}</p>
+					</div>
 				</div>
-				{/* <div className='item-btns'>
+				<div className='item-btns'>
 					<Link to='/edit'>
-						<button className='item-btns edit' onClick={() => {props.handleSave(item)}}>Edit</button>
+						<button className='item-btns edit' onClick={() => {props.handleUpdate(item)}}>Edit</button>
 					</Link>
 					<Link to='/delete'>
 						<button className='item-btns delete' onClick={() => {props.handleDelete(item)}}>Delete</button>
 					</Link>
 					<Link to='/completed'>
-						<button className='item-btns completed' onClick={() => {props.handleCompleted(item)}}>Completed</button>
+						<button className='item-btns completed' onClick={() => {props.handleCompleted(item)}}>Done</button>
 					</Link>
 					<Link to='/like'>
 						<button className='item-btns like' onClick={() => {props.handleLike(item)}}>Like</button>
 					</Link>
-				</div> */}
+				</div>
 			</div>
 			</>
 		)
