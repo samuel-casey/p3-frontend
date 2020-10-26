@@ -5,22 +5,21 @@ import './WishList.scss';
 
 export default function WishList(props) {
 
-// FOR TESTING////////////
-//REMOVE COMPONENT FROM APP.JS
-	const wishList = [{
-		title: "walk",
-		time_minutes: 15,
-		category: "exercise"
-	},
-	{
-		title: "meditate",
-		time_minutes: 15,
-		category: "relax"
-	}]
+// FOR TESTING ONLY - TO BE DELETED////////////
+	// const wishList = [{
+	// 	title: "walk",
+	// 	time_minutes: 15,
+	// 	category: "exercise"
+	// },
+	// {
+	// 	title: "meditate",
+	// 	time_minutes: 15,
+	// 	category: "relax"
+	// }]
 /////////////////////////////
 
-	const wishlist = wishList.map((item, index) => {
-	// const wishlist = props.wishList.map((item, index) => {
+	//FOR TESTING .MAP() ONLY// const wishlist = wishList.map((item, index) => {
+	const wishlist = props.wishList.map((item, index) => {
 		return(
 			<>
 			
@@ -55,8 +54,8 @@ export default function WishList(props) {
 	return (
 		<>
 			<div className='page-title'>Wish List</div>
-			{/* {props.wishList.length > 0 ? loading : wishlist} */}
-			{wishList.length > 0 ? wishlist : loading}
+			{props.wishList.length > 0 ? loading : wishlist}
+			{/*FOR TESTING ONLY: {wishList.length > 0 ? wishlist : loading} */}
 		</>
 	)
 	}
