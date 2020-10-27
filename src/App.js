@@ -8,6 +8,8 @@ import SignUpForm from './Components/SignUpForm/SignUpForm';
 import LogInForm from './Components/LogInForm/LogInForm';
 import TestNav from './Components/TestNav/TestNav';
 import WishListForm from './Components/WishListForm/WishListForm';
+import CompletedList from './Components/CompletedList/CompletedList';
+import LikedItems from './Components/LikedItems/LikedItems';
 
 export const GlobalContext = createContext(null);
 
@@ -21,7 +23,8 @@ function App() {
 	// if empty wishlist item here, all components can access empty wishlist item
 	// favList -- for each quote if isFav === true
 	const [wishList, setWishList] = useState([]);
-	// completedList
+	const [completedList, setCompletedList] = useState([]);
+	const [likedList, setLikedList] = useState([]);
 
 	const emptyWishListItem = {
 		title: '',
@@ -41,8 +44,26 @@ function App() {
 				},
 			});
 			const json = await response.json();
-			console.log(json);
-			setWishList(json);
+			// temp lists for updating state based on booleans in DB
+			let likes = [];
+			let complete = [];
+			let wish = [];
+			// loop through DB items and push to appropriate temp list
+			for (let i of json) {
+				if (i.isLiked === true) {
+					console.log('liked?', i);
+					likes.push(i);
+				}
+				if (i.isComplete === true) {
+					complete.push(i);
+				} else {
+					wish.push(i);
+				}
+			}
+			// set state === temp lists
+			setLikedList(likes);
+			setWishList(wish);
+			setCompletedList(complete);
 		} catch (error) {
 			console.log(error);
 		}
@@ -66,7 +87,8 @@ function App() {
 			);
 			const response = await completedItem.json();
 			console.log('completedItem: ', response);
-			// props.setWishList(response);
+			setCompletedList(response);
+			getWishList(gState.token);
 		} catch (error) {
 			console.log(error);
 		}
@@ -89,8 +111,28 @@ function App() {
 				}
 			);
 			const response = await toggledLikeItem.json();
-			console.log('completedItem: ', response);
-			// props.setWishList(response);
+			console.log('liked/unliked Item: ', response);
+			getWishList(gState.token);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const handleDelete = async (wishListItem) => {
+		try {
+			const deletedItem = await fetch(
+				gState.url + '/wishlist/' + wishListItem._id,
+				{
+					method: 'delete',
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: `bearer ${gState.token}`,
+					},
+				}
+			);
+			const response = await deletedItem.json();
+			console.log('deletedItem: ', response);
+			getWishList(gState.token);
 		} catch (error) {
 			console.log(error);
 		}
@@ -132,13 +174,14 @@ function App() {
 											wishList={wishList}
 											handleCompleted={handleCompleted}
 											handleLike={handleLike}
+											handleDelete={handleDelete}
 											// setWishList={setWishList}
 										/>
 									</>
 								);
 							}}
 						/>
-						{/* <Route
+						<Route
 							path='/completedlist'
 							render={(rp) => {
 								return (
@@ -146,14 +189,14 @@ function App() {
 										<Quote />
 										<CompletedList
 											{...rp}
-											// item={emptyWishListItem}
+											handleLike={handleLike}
+											handleDelete={handleDelete}
 											completedList={completedList}
-											// setWishList={setWishList}
 										/>
 									</>
 								);
 							}}
-						/> */}
+						/>
 						<Route
 							path='/wishlistform'
 							render={(rp) => {
@@ -163,6 +206,19 @@ function App() {
 										item={emptyWishListItem}
 										wishList={wishList}
 										setWishList={setWishList}
+									/>
+								);
+							}}
+						/>
+						<Route
+							path='/likeditems'
+							render={(rp) => {
+								return (
+									<LikedItems
+										{...rp}
+										likedList={likedList}
+										handleDelete={handleDelete}
+										handleLike={handleLike}
 									/>
 								);
 							}}
