@@ -6,6 +6,8 @@ import Quote from './Components/Quote/Quote';
 import WishList from './Components/WishList/WishList';
 import SignUpForm from './Components/SignUpForm/SignUpForm';
 import LogInForm from './Components/LogInForm/LogInForm';
+import TestNav from './Components/TestNav/TestNav';
+
 export const GlobalContext = createContext(null);
 
 
@@ -19,8 +21,8 @@ function App() {
 	useEffect(() => {
 		const token = JSON.parse(window.localStorage.getItem('token'));
 		const email = JSON.parse(window.localStorage.getItem('email'));
-		if (token) {
-			setGState({ ...gState, token: token.token, email: email.email });
+		if (token && email) {
+			setGState({ ...gState, token: token, email: email });
 		}
 	}, []);
 
@@ -29,6 +31,7 @@ function App() {
 			<div className='App'>
 				<header>
 					<Nav />
+					<TestNav />
 				</header>
 				<Switch>
 					<main>
