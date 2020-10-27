@@ -1,30 +1,28 @@
-import React, { useContext } from 'react';
+// import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import './WishList.scss';
-import { UserContext } from '../../App';
 
 export default function WishList(props) {
-	const currentUser = useContext(UserContext);
 	// FOR TESTING ONLY - TO BE DELETED////////////
-	const wishList = [
-		{
-			title: 'walk',
-			time_minutes: 15,
-			category: 'exercise',
-		},
-		{
-			title: 'meditate',
-			time_minutes: 15,
-			category: 'relax',
-		},
-	];
+	// const wishList = [
+	// 	{
+	// 		title: 'walk',
+	// 		time_minutes: 15,
+	// 		category: 'exercise',
+	// 	},
+	// 	{
+	// 		title: 'meditate',
+	// 		time_minutes: 15,
+	// 		category: 'relax',
+	// 	},
+	// ];
 	/////////////////////////////
 
 	const wishlist = wishList.map((item, index) => {
 		// const wishlist = props.wishList.map((item, index) => {
 		return (
 			<>
-				{currentUser.email}
 				<div className='list' key={index}>
 					<div className='item-info'>
 						<p className='title'>{item.title}</p>

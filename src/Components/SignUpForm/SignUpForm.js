@@ -1,21 +1,56 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './SignUpForm.scss';
+import { GlobalContext } from '../../App';
+import { Link } from 'react-router-dom';
 
 export default function SignUpForm(props) {
-	const [formData, setFormData] = useState(props.emptyUser);
+	const { gState, setGState } = useContext(GlobalContext);
+	const { url } = gState;
 
-	const handleSubmit = (e) => {
+	const emptyUser = {
+		email: '',
+		password: '',
+		confirmPassword: '',
+	};
+
+	const [formData, setFormData] = useState(emptyUser);
+	const [attempted, setAttempted] = useState(0);
+	const [errorMsg, setErrorMsg] = useState('');
+
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		if (formData.password === formData.confirmPassword) {
-			const newUser = {
-				email: formData.email,
-				password: formData.password,
-			};
-			props.handleSignUp(newUser);
-			setFormData(props.emptyUser);
+		const { email, password, confirmPassword } = formData;
+
+		let newUser;
+
+		if (password === confirmPassword) {
+			newUser = { email, password };
 		} else {
 			alert('Woops! Your passwords do not match. Please try again.');
 			document.location.reload();
+		}
+		try {
+			const user = await fetch(url + '/auth/signup', {
+				method: 'post',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(newUser),
+			});
+			const response = await user.json();
+			if (response.error) {
+				setErrorMsg(
+					'An error occurred while trying to sign you up. Please try again. If you think you may already have an account under this email, please try logging in instead.'
+				);
+				setAttempted(attempted + 1);
+			} else {
+				props.history.push('/login');
+			}
+		} catch (error) {
+			console.log('err', error);
+			alert(
+				'An error occurred while attempting to sign you up. Please try again'
+			);
 		}
 	};
 
@@ -25,9 +60,17 @@ export default function SignUpForm(props) {
 		setFormData({ ...formData, [key]: value });
 	};
 
+	const login =
+		attempted > 0 ? (
+			<Link to='/login' className='form-btn'>
+				Log in
+			</Link>
+		) : null;
+
 	return (
 		<div className='sign-up-page'>
 			<h2>Sign up</h2>
+			<h3 className='error'>{errorMsg}</h3>
 			<form className='sign-up-form' onSubmit={handleSubmit}>
 				<input
 					className='form-text-input'
@@ -54,6 +97,7 @@ export default function SignUpForm(props) {
 					onChange={handleChange}
 				/>
 				<input type='submit' className='form-btn' />
+				{login}
 			</form>
 		</div>
 	);

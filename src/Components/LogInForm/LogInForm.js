@@ -2,7 +2,13 @@ import React, { useState } from 'react';
 import './LogInForm.scss';
 
 export default function LogInForm(props) {
-	const [formData, setFormData] = useState(props.emptyUser);
+	const emptyUser = {
+		email: '',
+		password: '',
+		confirmPassword: '',
+	};
+
+	const [formData, setFormData] = useState(emptyUser);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
