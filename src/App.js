@@ -153,7 +153,6 @@ function App() {
 			<div className='App'>
 				<header>
 					<Nav />
-					<TestNav />
 				</header>
 				<Switch>
 					<main>

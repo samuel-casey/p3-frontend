@@ -1,1 +1,10 @@
-@import "../../variables.scss"
+@import "../../variables.scss";
+
+a {
+    color: $sca-gray !important;
+    text-decoration: none;
+}
+
+a:visited {
+    color: inherit;
+}

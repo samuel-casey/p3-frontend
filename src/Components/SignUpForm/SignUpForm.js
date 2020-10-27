@@ -61,12 +61,15 @@ export default function SignUpForm(props) {
 		setFormData({ ...formData, [key]: value });
 	};
 
-	const login =
-		attempted > 0 ? (
-			<Link to='/login' className='form-btn'>
-				Log in
-			</Link>
-		) : null;
+	const login = (
+		<Link to='/login'>
+			<input
+				className='form-btn'
+				type='submit'
+				value='Have an account? Proceed to log in.'
+			/>
+		</Link>
+	);
 
 	return (
 		<div className='sign-up-page'>
