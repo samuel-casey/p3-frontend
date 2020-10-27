@@ -1,4 +1,4 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, createContext, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './App.scss';
 import Nav from './Components/Nav/Nav';
@@ -12,38 +12,20 @@ export const GlobalContext = createContext(null);
 function App() {
 	const [gState, setGState] = useState({
 		url: 'https://self-care-app-backend.herokuapp.com',
+		token: null,
+		email: null,
 	});
 
-	// const handleLogIn = async (user) => {
-	// 	try {
-	// 		const loggedIn = await fetch(url + 'auth/login', {
-	// 			method: 'post',
-	// 			headers: {
-	// 				'Content-Type': 'application/json',
-	// 			},
-	// 			body: JSON.stringify(user),
-	// 		});
-	// 		const response = await loggedIn.json();
-	// 		// if the user logged in successfully...
-	// 		if (response.status === 200) {
-	// 			const newUser = await response;
-	// 			// set current user to newly logged in user
-	// 			await setCurrentUser(newUser);
-	// 			//get activities of the new user
-	// 			// if there was an error with the login...
-	// 		} else {
-	// 			// if there's some sort of error from the server (e.g. wrong pw, no user found, send an alert and try again)
-	// 			alert(`Woops! ${response.error} Please try again`);
-	// 			console.log(response);
-	// 			// reload the page to clear form and avoid getting a React error
-	// 			// document.location.reload();
-	// 		}
-	// 	} catch (err) {
-	// 		alert(`Error: ${err}. Please try again`);
-	// 		console.log(err);
-	// 		document.location.reload();
-	// 	}
-	// };
+	useEffect(() => {
+		const token = JSON.parse(window.localStorage.getItem('token'));
+		const email = JSON.parse(window.localStorage.getItem('email'));
+		if (token) {
+			setGState({ ...gState, token: token.token, email: email.email });
+		}
+		// else {
+		// 	setGState({ ...gState, token: null, email: null });
+		// }
+	}, []);
 
 	return (
 		<GlobalContext.Provider value={{ gState, setGState }}>

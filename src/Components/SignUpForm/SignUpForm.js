@@ -7,13 +7,13 @@ export default function SignUpForm(props) {
 	const { gState, setGState } = useContext(GlobalContext);
 	const { url } = gState;
 
-	const emptyUser = {
+	const emptyForm = {
 		email: '',
 		password: '',
 		confirmPassword: '',
 	};
 
-	const [formData, setFormData] = useState(emptyUser);
+	const [formData, setFormData] = useState(emptyForm);
 	const [attempted, setAttempted] = useState(0);
 	const [errorMsg, setErrorMsg] = useState('');
 
@@ -43,6 +43,7 @@ export default function SignUpForm(props) {
 					'An error occurred while trying to sign you up. Please try again. If you think you may already have an account under this email, please try logging in instead.'
 				);
 				setAttempted(attempted + 1);
+				setFormData(emptyForm);
 			} else {
 				props.history.push('/login');
 			}
