@@ -6,8 +6,8 @@ import Quote from './Components/Quote/Quote';
 import WishList from './Components/WishList/WishList';
 import SignUpForm from './Components/SignUpForm/SignUpForm';
 import LogInForm from './Components/LogInForm/LogInForm';
-
 export const GlobalContext = createContext(null);
+
 
 function App() {
 	const [gState, setGState] = useState({
