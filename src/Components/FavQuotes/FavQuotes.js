@@ -2,7 +2,14 @@ import React from 'react';
 import './FavQuotes.scss';
 
 export default function FavQuotes(props) {
-	const favquotes = props.favlist.map(item, index => {
+	const favList = {
+		author: 'Herman Hesse',
+		quote: 'Something insightful',
+		theme: 'Acceptance',
+	};
+
+	// const favQuotes = props.favList.map((item, index) => {
+	const favQuotes = favList.map((item, index) => {
 		return (
 			<div className='fav-item' key={index}>
 				<div className='item-info'>
@@ -13,17 +20,24 @@ export default function FavQuotes(props) {
 					</div>
 				</div>
 				<div className='item-btns'>
-						<button className='item-btns delete' onClick={() => {props.handleDelete(item)}}>Delete</button>
+					<button
+						className='item-btns delete'
+						onClick={() => {
+							props.handleDelete(item);
+						}}>
+						Delete
+					</button>
 				</div>
 			</div>
-		)
-	})
-	const empty = 'Your favorite quotes will be saved here'
+		);
+	});
+	const empty = 'Your favorite quotes will be saved here';
 
 	return (
 		<>
 			<div className='page-title'>Favorite Quotes</div>
-			{props.favlist.length > 0 ? favquotes : empty}
+			{/* {props.favList.length > 0 ? favQuotes : empty} */}
+			{favList.length > 0 ? favQuotes : empty}
 		</>
-	)
+	);
 }

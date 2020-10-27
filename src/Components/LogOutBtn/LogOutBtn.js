@@ -1,6 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import './LogOutBtn.scss';
+import { GlobalContext } from '../../App';
 
 export default function LogOutBtn() {
-	return <div>LogOutBtn</div>;
+	const { gState, setGState } = useContext(GlobalContext);
+
+	return (
+		<Link>
+			<button
+				onClick={() => {
+					window.localStorage.removeItem('token');
+					window.localStorage.removeItem('email');
+					setGState({ ...gState, token: null, email: null });
+				}}>
+				Log out
+			</button>
+		</Link>
+	);
 }
