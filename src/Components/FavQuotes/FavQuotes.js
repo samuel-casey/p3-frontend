@@ -6,10 +6,10 @@ export default function FavQuotes(props) {
 		return (
 			<div className='fav-item' key={index}>
 				<div className='item-info'>
-					<p className='title'>{item.title}</p>
+					<p className='title'>{item.quote}</p>
 					<div className='second-row'>
-						<p className='time'>{item.time_minutes}</p>
-						<p className='category'>{item.category}</p>
+						<p className='author'>{item.author}</p>
+						<p className='category'>{item.theme}</p>
 					</div>
 				</div>
 				<div className='item-btns'>
