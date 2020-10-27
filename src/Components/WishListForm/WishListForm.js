@@ -32,6 +32,7 @@ export default function WishListForm(props) {
 	// const input = React.useRef(null)
 
 
+	//update to async and await
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		const {title, category, time_minutes} = formData
@@ -62,6 +63,7 @@ export default function WishListForm(props) {
 			<p>Add or Update an Item</p>
 			<form onSubmit={handleSubmit}>
 				<input
+					className='form-text-input'
 					type='text'
 					name='title'
 					value={formData.title}
@@ -69,6 +71,7 @@ export default function WishListForm(props) {
 					onChange={handleChange}
 				/>
 				<input
+					className='form-text-input'
 					type='text'
 					name='category'
 					value={formData.category}
@@ -76,13 +79,14 @@ export default function WishListForm(props) {
 					onChange={handleChange}
 				/>
 				<input
+					className='form-text-input'
 					type='text'
 					name='time'
 					value={formData.time_minutes}
 					placeholder='Time'
 					onChange={handleChange}
 				/>
-				<input type='submit' value={props.label} />
+				<input className='form-btn' type='submit' value={props.label} />
 		{/* should receive label prop from App to equal "Add" and "Update" */}
 			</form>
 		</div>
