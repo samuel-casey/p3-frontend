@@ -2,6 +2,76 @@ import React, { useState, useContext } from 'react';
 import { GlobalContext } from '../../App';
 import './WishListForm.scss';
 
+/////ADD / UPDATES TO APP///////////
+	// const [selectedItem, setSelectedItem] = useState()
+	// const selectItem = (item) => {
+	// 	setSelectedItem(item)
+	// }
+
+	// <Route
+	// 	exact
+	// 	path='/editform'
+	// 	render={(rp) => (
+	// 		<WishListForm
+	// 			{...rp}
+	// 			item={selectedItem}
+	// 			handleSubmit={handleUpdate}
+	//			label="Update Item"
+	// 		/>
+	// 	)}
+	// />
+	//
+	// Add to <WishListForm /> at route '/wishlistform':
+	// handleSubmit={handleCreate}
+	// label="Create New Item"
+	//
+	// Pass to WishList component:
+	// item={selectItem}
+	//
+	//MOVE HANDLESUBMIT FUNCTION TO APP
+	// - rename to: handleCreate
+
+	// const handleCreate = async (newItem) => {
+	// 	e.preventDefault();
+	// 	try {
+	// 		const wishList = await fetch(url + '/wishlist/', {
+	// 			method: 'post',
+	// 			headers: {
+	// 				'Content-Type': 'application/json',
+	// 				Authorization: `bearer ${gState.token}`,
+	// 			},
+	// 			body: JSON.stringify(newItem),
+	// 		});
+	// 		const response = await wishList.json();
+	// 		console.log('newItem: ', response);
+	// 		setWishList(response);
+	// 		history.push("/wishlist")
+	// 	} catch (error) {
+	// 		console.log(error);
+	// 	}
+	// };
+
+	// const handleUpdate = async (updatedItem) => {
+	// 	e.preventDefault();
+	// 	try {
+	// 		const updatedItemList = await fetch(url + '/wishlist/', {
+	// 			method: 'put',
+	// 			headers: {
+	// 				'Content-Type': 'application/json',
+	// 				Authorization: `bearer ${gState.token}`,
+	// 			},
+	// 			body: JSON.stringify(updatedItem),
+	// 		});
+	// 		const response = await updatedItemList.json();
+	// 		setWishList(response);
+	// 		history.push("/wishlist")
+	// 	} catch (error) {
+	// 		console.log(error);
+	// 	}
+	// };
+
+//////////////////////////////////////////
+
 export default function WishListForm(props) {
 	const { gState, setGState } = useContext(GlobalContext);
 	const { url } = gState;
@@ -12,6 +82,7 @@ export default function WishListForm(props) {
 
 	// const input = React.useRef(null)
 
+	///REMOVE HANDLESUBMIT AFTER LIFTING TO APP
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const { title, category, time_minutes } = formData;
@@ -33,11 +104,6 @@ export default function WishListForm(props) {
 		} catch (error) {
 			console.log(error);
 		}
-		// 	.then((response) => response.json())
-		// 	.then((data) => {
-		// 		console.log(data);
-		// 	});
-		// props.handleSubmit(data);
 	};
 
 	const handleChange = (e) => {
@@ -74,7 +140,7 @@ export default function WishListForm(props) {
 					onChange={handleChange}
 				/>
 				<input type='submit' value={props.label} />
-				{/* should receive label prop from App to equal "Add" and "Update" */}
+				
 			</form>
 		</div>
 	);

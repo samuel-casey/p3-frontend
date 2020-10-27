@@ -76,6 +76,7 @@ export default function WishList(props) {
 	return (
 		<>
 			<div className='page-title'>Wish List</div>
+			<button onClick={() => {props.history.push('/wishlistform')}}>Add New Item</button>
 			{/* {isLoggedIn} */}
 			{props.wishList.length > 0 ? wishList : loading}
 			{/* /// FOR TESTING ONLY //// */}
