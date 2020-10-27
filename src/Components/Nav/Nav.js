@@ -5,7 +5,7 @@ import './Nav.scss';
 export default function Nav() {
 	return(
 	<>
-<nav>
+{/* <nav>
 	<h6>Hello *user*</h6>
 
        <Link className='Links' to='/FavQuotes'>
@@ -22,7 +22,7 @@ export default function Nav() {
        </Link>
        <div id="hamburger"><h3>☰</h3></div>
 	<button onClick ={prop.LogOutBtn} >Logout</button>
-</nav>
+</nav> */}
 </>
    );
 

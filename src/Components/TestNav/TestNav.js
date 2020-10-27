@@ -2,12 +2,12 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom'
 import LogOutBtn from '../LogOutBtn/LogOutBtn';
 import { GlobalContext } from '../../App';
-import { null } from 'check-types';
 
 
 export default function TestNav() {
     const { gState, setGState } = useContext(GlobalContext);
     // const LogOutBtn ={LogOutBtn}
+
 
 
 	let loggedInNav = (<nav>
