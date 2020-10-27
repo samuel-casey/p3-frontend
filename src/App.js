@@ -19,7 +19,7 @@ function App() {
 	});
 
 	// if empty wishlist item here, all components can access empty wishlist item
-	// favList
+	// favList -- for each quote if isFav === true
 	const [wishList, setWishList] = useState([]);
 	// completedList
 
@@ -31,6 +31,7 @@ function App() {
 
 	const getWishList = async (token) => {
 		try {
+			/// NEED TO MAKE SURE ONLY AUTH'ED USER'S ITEMS ARE in GET of WISHLIST.JS controller
 			console.log(gState);
 			console.log(`BEARER ${gState.token}`);
 			const response = await fetch(gState.url + '/wishlist/', {
@@ -42,6 +43,54 @@ function App() {
 			const json = await response.json();
 			console.log(json);
 			setWishList(json);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const handleCompleted = async (wishListItem) => {
+		try {
+			wishListItem.isComplete = true;
+			console.log(wishListItem);
+
+			const completedItem = await fetch(
+				gState.url + '/wishlist/' + wishListItem._id,
+				{
+					method: 'put',
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: `bearer ${gState.token}`,
+					},
+					body: JSON.stringify(wishListItem),
+				}
+			);
+			const response = await completedItem.json();
+			console.log('completedItem: ', response);
+			// props.setWishList(response);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const handleLike = async (wishListItem) => {
+		try {
+			wishListItem.isLiked = !wishListItem.isLiked;
+			console.log(wishListItem);
+
+			const toggledLikeItem = await fetch(
+				gState.url + '/wishlist/' + wishListItem._id,
+				{
+					method: 'put',
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: `bearer ${gState.token}`,
+					},
+					body: JSON.stringify(wishListItem),
+				}
+			);
+			const response = await toggledLikeItem.json();
+			console.log('completedItem: ', response);
+			// props.setWishList(response);
 		} catch (error) {
 			console.log(error);
 		}
@@ -81,12 +130,30 @@ function App() {
 											{...rp}
 											// item={emptyWishListItem}
 											wishList={wishList}
+											handleCompleted={handleCompleted}
+											handleLike={handleLike}
 											// setWishList={setWishList}
 										/>
 									</>
 								);
 							}}
 						/>
+						{/* <Route
+							path='/completedlist'
+							render={(rp) => {
+								return (
+									<>
+										<Quote />
+										<CompletedList
+											{...rp}
+											// item={emptyWishListItem}
+											completedList={completedList}
+											// setWishList={setWishList}
+										/>
+									</>
+								);
+							}}
+						/> */}
 						<Route
 							path='/wishlistform'
 							render={(rp) => {
