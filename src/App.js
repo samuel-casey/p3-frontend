@@ -22,9 +22,6 @@ function App() {
 		if (token) {
 			setGState({ ...gState, token: token.token, email: email.email });
 		}
-		// else {
-		// 	setGState({ ...gState, token: null, email: null });
-		// }
 	}, []);
 
 	return (
