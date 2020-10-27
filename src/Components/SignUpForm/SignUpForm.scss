@@ -1,1 +1,39 @@
-@import "../../variables.scss"
+@import "../../variables.scss";
+
+.sign-up-page {
+    h2 {
+        color: $sca-pink;
+        margin: 1rem auto;
+    }
+    
+
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    align-items: center;
+    margin: 0 auto;
+
+    .sign-up-form {
+        display: flex;
+        flex-direction: column;
+        line-height: 2rem;
+
+        input {
+            margin: 0.5rem;
+            background-color: $sca-gray;
+            width: 100%;
+            align-self: center;
+            border: none;
+        }
+
+    }
+
+    .form-btn {
+        background-color: $sca-dark-blue !important;
+        text-decoration: none;
+        color: $sca-gray;
+        border: 2px solid $sca-light-blue !important;
+        border-radius: 5px;
+    }
+    
+}
