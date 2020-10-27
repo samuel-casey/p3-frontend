@@ -6,7 +6,6 @@ import Quote from './Components/Quote/Quote';
 import WishList from './Components/WishList/WishList';
 import SignUpForm from './Components/SignUpForm/SignUpForm';
 import LogInForm from './Components/LogInForm/LogInForm';
-import TestNav from './Components/TestNav/TestNav';
 import WishListForm from './Components/WishListForm/WishListForm';
 import CompletedList from './Components/CompletedList/CompletedList';
 import LikedItems from './Components/LikedItems/LikedItems';
