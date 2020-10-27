@@ -1,61 +1,50 @@
-import React, {useState} from 'react';
-import {GlobalCtx} from '../../App'
+import React, { useState, useContext } from 'react';
+import { GlobalContext } from '../../App';
 import './WishListForm.scss';
 
 export default function WishListForm(props) {
-
-	const {gState, setGState} = React.useContext(GlobalCtx)
-	
-///GET index of wishlist items
-///this should actually go in WishList component
-	// const {gState, setGState} = React.useContext(GlobalCtx)	
-	// const {url, token} = gState	
-	// const [wishList, setWishList] = React.useState(null)
-	// const getWishList = async () => {
-	// 	const response = await fetch(url + "/wishlist/", {
-	// 		method: "get",
-	// 		headers: {
-	// 			Authorization: "bearer" + token
-	// 		}
-	// 	})
-	// 	const json = await response.json()
-	// 	setWishList(json)
-	// }
-	// React.useEffect(() => {
-	// 	getWishList()
-	// }, [])
-//////////////////////////////////////////
+	const { gState, setGState } = useContext(GlobalContext);
+	const { url } = gState;
+	const { wishList, setWishList } = props;
 
 	//props.item in default useState here is to create a blank form
-	const [formData, setFormData] = React.useState(props.item)
+	const [formData, setFormData] = useState(props.item);
 
 	// const input = React.useRef(null)
 
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		const { title, category, time_minutes } = formData;
+		const { email } = gState;
+		const newItem = { title, category, time_minutes, email };
+		try {
+			const wishList = await fetch(url + '/wishlist/', {
+				method: 'post',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `bearer ${gState.token}`,
+				},
+				body: JSON.stringify(newItem),
+			});
+			const response = await wishList.json();
+			console.log('newItem: ', response);
+			props.setWishList(response);
+			setFormData(props.item);
+		} catch (error) {
+			console.log(error);
+		}
+		// 	.then((response) => response.json())
+		// 	.then((data) => {
+		// 		console.log(data);
+		// 	});
+		// props.handleSubmit(data);
+	};
 
-	const handleSubmit = (event) => {
-		event.preventDefault();
-		const {title, category, time_minutes} = formData
-
-		fetch(url + "/wishlist/", {
-			method: "post",
-			headers: {
-				"Content-Type": "application/json",
-				"Authorization": `bearer ${token}`
-			},
-			body: JSON.stringify({title, category, time_minutes})
-		})
-		.then(response => response.json())
-		.then(data => {
-			console.log(data)
-		})
-		props.handleSubmit(data)
-	}
-	
 	const handleChange = (e) => {
 		const key = e.target.name;
 		const value = e.target.value;
-		setFormData({...formData, [key]: value})
-	}
+		setFormData({ ...formData, [key]: value });
+	};
 
 	return (
 		<div className='wishlist-form'>
@@ -76,15 +65,15 @@ export default function WishListForm(props) {
 					onChange={handleChange}
 				/>
 				<input
-					type='text'
-					name='time'
+					type='number'
+					name='time_minutes'
 					value={formData.time_minutes}
 					placeholder='Time'
 					onChange={handleChange}
 				/>
 				<input type='submit' value={props.label} />
-		{/* should receive label prop from App to equal "Add" and "Update" */}
+				{/* should receive label prop from App to equal "Add" and "Update" */}
 			</form>
 		</div>
-	)
+	);
 }
