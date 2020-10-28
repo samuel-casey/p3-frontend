@@ -2,6 +2,7 @@ import React, { useEffect, useContext, useState } from 'react';
 import './Quote.scss';
 import { GlobalContext } from '../../App';
 
+
 export default function Quote(props) {
 	const { gState, setGState } = useContext(GlobalContext);
 

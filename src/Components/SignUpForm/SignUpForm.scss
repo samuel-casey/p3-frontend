@@ -1,39 +1,40 @@
-@import "../../variables.scss";
+@import '../../variables.scss';
 
-.sign-up-page {
-    h2 {
-        color: $sca-pink;
-        margin: 1rem auto;
-    }
-    
+@media screen and (min-width: 425px) {
+	.sign-up-page {
+		h2 {
+			color: $sca-dark-blue;
+			margin: 1rem auto;
+			text-decoration: underline;
+		}
 
-    display: flex;
-    flex-direction: column;
-    width: 80vw;
-    align-items: center;
-    margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+		width: 80vw;
+		align-items: center;
+		margin: 0 auto;
+		background: $sca-pink;
 
-    .sign-up-form {
-        display: flex;
-        flex-direction: column;
-        line-height: 2rem;
+		.sign-up-form {
+			display: flex;
+			flex-direction: column;
+			line-height: 2rem;
 
-        input {
-            margin: 0.5rem;
-            background-color: $sca-gray;
-            width: 100%;
-            align-self: center;
-            border: none;
-        }
+			input {
+				margin: 0.5rem;
+				background-color: $sca-gray;
+				width: 100%;
+				align-self: center;
+				border: none;
+			}
+		}
 
-    }
-
-    .form-btn {
-        background-color: $sca-dark-blue !important;
-        text-decoration: none;
-        color: $sca-gray;
-        border: 2px solid $sca-light-blue !important;
-        border-radius: 5px;
-    }
-    
+		.form-btn {
+			background-color: $sca-dark-blue !important;
+			text-decoration: none;
+			color: $sca-gray;
+			border: 2px solid $sca-light-blue !important;
+			border-radius: 5px;
+		}
+	}
 }

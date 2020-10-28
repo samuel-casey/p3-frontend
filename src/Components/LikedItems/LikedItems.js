@@ -16,18 +16,18 @@ export default function LikedItems(props) {
 				</div>
 				<div className='item-btns'>
 					<button
-						className='item-btns delete'
-						onClick={() => {
-							props.handleLike(item);
-						}}>
-						Toggle Liked
-					</button>
+							className={item.isLiked ? 'btn-liked' : 'btn-notliked'}
+							onClick={() => {
+								props.handleLike(item);
+							}}>
+							<i class="far fa-thumbs-up"></i>
+						</button>
 					<button
-						className='item-btns delete'
+						className='delete'
 						onClick={() => {
 							props.handleDelete(item);
 						}}>
-						Delete
+						<i class="fas fa-times"></i>
 					</button>
 				</div>
 			</div>

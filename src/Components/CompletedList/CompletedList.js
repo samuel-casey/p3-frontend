@@ -36,22 +36,28 @@ export default function CompletedList(props) {
 					</div>
 				</div>
 				<div className='item-btns'>
-					{/* do we want a delete button for the completed items? */}
 					<button
-						className='item-btns delete'
+							className={item.isComplete ? 'btn-complete' : 'btn-notcomplete'}
+							onClick={() => {
+								props.handleCompleted(item);
+							}}>
+							<i class="fas fa-check"></i>
+						</button>
+					<button
+						className='delete'
 						onClick={() => {
 							props.handleDelete(item);
 							// handleDelete(item);
 						}}>
-						Delete
+						<i class="fas fa-times"></i>
 					</button>
 
 					<button
-						className='item-btns like'
+						className={item.isLiked ? 'btn-liked' : 'btn-notliked'}
 						onClick={() => {
 							props.handleLike(item);
 						}}>
-						Like
+						<i class="far fa-thumbs-up"></i>
 					</button>
 				</div>
 			</div>
