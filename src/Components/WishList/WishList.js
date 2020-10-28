@@ -4,6 +4,8 @@ import { GlobalContext } from '../../App';
 import './WishList.scss';
 
 export default function WishList(props) {
+	console.log('wishlist props', props)//returns only the one new item. Not the wishList array.
+
 	const { gState, setGState } = useContext(GlobalContext);
 
 	// FOR TESTING ONLY - TO BE DELETED////////////
@@ -21,6 +23,8 @@ export default function WishList(props) {
 	// ];
 	/////////////////////////////
 	// const isLoggedIn = gState.email ? gState.email : null;
+
+	//When creating new item, gives error that .map is not a function, but I refresh and it's added...
 	const wishList = props.wishList.map((item, index) => {
 		return (
 			<>
@@ -37,7 +41,7 @@ export default function WishList(props) {
 							className='item-btns edit'
 							onClick={() => {
 								props.selectItem(item);
-								props.history.push('/edit');
+								props.history.push('/editform');
 							}}>
 							Edit
 						</button>
@@ -59,11 +63,12 @@ export default function WishList(props) {
 						</button>
 
 						<button
-							className='item-btns like'
+							className={item.isLiked ? 'btn-liked' : 'btn-notliked'}
+							// className='btn-liked'
 							onClick={() => {
 								props.handleLike(item);
 							}}>
-							Like
+							<i class="far fa-thumbs-up"></i>
 						</button>
 					</div>
 				</div>
