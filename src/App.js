@@ -14,7 +14,8 @@ export const GlobalContext = createContext(null);
 
 function App() {
 	const [gState, setGState] = useState({
-		url: 'https://self-care-app-backend.herokuapp.com',
+		// url: 'https://self-care-app-backend.herokuapp.com',
+		url: 'http://localhost:4000',
 		token: null,
 		email: null,
 	});
@@ -25,6 +26,13 @@ function App() {
 	const [completedList, setCompletedList] = useState([]);
 	const [likedList, setLikedList] = useState([]);
 
+	const [selectedItem, setSelectedItem] = useState();
+	
+	const selectItem = (item) => {
+		console.log('selecteditem', item)
+		setSelectedItem(item)
+	}
+
 	const emptyWishListItem = {
 		title: '',
 		category: '',
@@ -34,8 +42,6 @@ function App() {
 	const getWishList = async (token) => {
 		try {
 			/// NEED TO MAKE SURE ONLY AUTH'ED USER'S ITEMS ARE in GET of WISHLIST.JS controller
-			console.log(gState);
-			console.log(`BEARER ${gState.token}`);
 			const response = await fetch(gState.url + '/wishlist/', {
 				method: 'get',
 				headers: {
@@ -63,6 +69,45 @@ function App() {
 			setLikedList(likes);
 			setWishList(wish);
 			setCompletedList(complete);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const handleCreate = async (newItem) => {
+		try {
+			const wishList = await fetch(gState.url + '/wishlist/', {
+				method: 'post',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `bearer ${gState.token}`,
+				},
+				body: JSON.stringify(newItem),
+			});
+			const response = await wishList.json();
+			console.log('newItem: ', response);
+			
+			getWishList(gState.token);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const handleUpdate = async (updatedItem) => {
+		console.log('updateditem', updatedItem)
+		try {
+			const updatedItemList = await fetch(gState.url + '/wishlist/' + updatedItem._id, {
+				method: 'put',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `bearer ${gState.token}`,
+				},
+				body: JSON.stringify(updatedItem),
+			});
+			const response = await updatedItemList.json();
+	//need to do more inspecting here
+			// setWishList(response);
+			getWishList(gState.token)
 		} catch (error) {
 			console.log(error);
 		}
@@ -173,6 +218,7 @@ function App() {
 											handleCompleted={handleCompleted}
 											handleLike={handleLike}
 											handleDelete={handleDelete}
+											selectItem={selectItem}
 											// setWishList={setWishList}
 										/>
 									</>
@@ -204,9 +250,24 @@ function App() {
 										item={emptyWishListItem}
 										wishList={wishList}
 										setWishList={setWishList}
+										handleSubmit={handleCreate}
+										label="Create New Item"
 									/>
 								);
 							}}
+						/>
+						<Route
+							exact
+							path='/editform'
+							render={(rp) => {
+								return (
+								<WishListForm
+									{...rp}
+									item={selectedItem}
+									handleSubmit={handleUpdate}
+									label="Update Item"
+								/>
+							)}}
 						/>
 						<Route
 							path='/likeditems'

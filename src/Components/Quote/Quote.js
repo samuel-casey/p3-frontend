@@ -2,7 +2,7 @@ import React, { useEffect, useContext, useState } from 'react';
 import './Quote.scss';
 import { GlobalContext } from '../../App';
 
-export default function Quote(props) {
+export default function Quote() {
 	const { gState, setGState } = useContext(GlobalContext);
 
 	const [quoteInfo, setQuoteInfo] = useState({ quote: '', author: '' });
@@ -14,7 +14,6 @@ export default function Quote(props) {
 		const quoteList = await response.json();
 		const randomNumber = Math.floor(Math.random() * quoteList.length);
 		const quoteObj = quoteList[randomNumber];
-		console.log('quoteObj', quoteObj);
 		setQuoteInfo({ quote: quoteObj.quote, author: quoteObj.author });
 	};
 
@@ -22,7 +21,7 @@ export default function Quote(props) {
 		getQuote();
 	}, []);
 
-	const quoteList = quoteList.map((item, index) => {
+	// const quotes = quoteList.map((item, index) => {
 	return (
 		<div className='quote'>
 			<div className='quote-body'>
@@ -30,14 +29,7 @@ export default function Quote(props) {
 					{quoteInfo.quote} -{quoteInfo.author}
 				</p>
 			</div>
-			<button
-				className='quote-btn like'
-				onClick={() => {
-					props.handleFav(item);
-				}}>
-				Like
-			</button>
 		</div>
 	);
-	});
+	// });
 }
