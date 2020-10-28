@@ -23,14 +23,58 @@ export default function SignUpForm(props) {
 		// GET DEMO USER NUMBER
 
 		try {
+			// determine what the demoUser's credentials should be based on the # of demo users that exists already
+
 			const demoNumber = await fetch(url + '/demo', {
 				method: 'get',
 				headers: {
 					'Content-Type': 'application/json',
 				},
 			});
-			const response = demoNumber.json();
+			const numDemoUsers = await demoNumber.json();
+			const demoEmail = `demo${numDemoUsers + 1}@pause.app`;
+			const demoPassword = 'demo';
+			const demoAccountCreds = {
+				email: demoEmail,
+				password: demoPassword,
+				isDemo: true,
+			};
+			console.log(demoAccountCreds);
+
+			// create a demo account with the new demoUser's credentials
+
+			const createDemoAccount = await fetch(url + '/auth/signup', {
+				method: 'post',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(demoAccountCreds),
+			});
+			const newDemoAccount = await createDemoAccount.json();
+			console.log(newDemoAccount);
+
+			// log in newly created demoUser
+			const loggedInDemo = await fetch(url + '/auth/login', {
+				method: 'post',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(demoAccountCreds),
+			});
+			const response = await loggedInDemo.json();
 			console.log(response);
+			if (response.error) {
+				alert(
+					`An error occurred while attempting to log you in. Please try again \n${response.error}`
+				);
+				setFormData(emptyForm);
+			} else {
+				window.localStorage.setItem('token', JSON.stringify(response.token));
+				window.localStorage.setItem('email', JSON.stringify(response.email));
+				setGState({ ...gState, token: response.token, email: response.email });
+				setFormData(emptyForm);
+				props.history.push('/wishlist');
+			}
 		} catch (error) {
 			console.log(error);
 		}
