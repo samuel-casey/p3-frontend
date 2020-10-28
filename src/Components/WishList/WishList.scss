@@ -1,22 +1,37 @@
-@import "../../variables.scss";
+@import '../../variables.scss';
 
-.wishlist-item {
-    display: flex;
-    justify-content: space-between;
-}
+@media screen and (min-width: 425px) {
+	.wishlist-page {
+		.wishlist-item {
+			display: flex;
+			justify-content: space-between;
+		}
 
-.second-row {
-    display: flex;
-}
+		display: flex;
+		flex-direction: column;
+		width: 80vw;
+		align-items: center;
+		margin: 0 auto;
+		background: $sca-pink;
 
-.time {
-    margin-left: 20px;
-}
-.category {
-    margin-left: 50px;
-}
+		.second-row {
+			display: flex;
+		}
 
+		.time {
+			margin-left: 20px;
+		}
+		.category {
+			margin-left: 50px;
+		}
 
+		.item-btns {
+			display: block;
+			width: 50px;
+			margin-right: 20px;
+		}
+
+    
 .item-btns {
     display: block;
     // width: 35px;
