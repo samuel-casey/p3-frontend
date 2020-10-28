@@ -21,7 +21,6 @@ export default function Quote() {
 		getQuote();
 	}, []);
 
-	// const quotes = quoteList.map((item, index) => {
 	return (
 		<div className='quote'>
 			<div className='quote-body'>
@@ -29,7 +28,13 @@ export default function Quote() {
 					{quoteInfo.quote} -{quoteInfo.author}
 				</p>
 			</div>
+			<button
+				className='quote-btn like'
+				onClick={() => {
+					// props.handleFav(item);
+				}}>
+				Like
+			</button>
 		</div>
 	);
-	// });
 }

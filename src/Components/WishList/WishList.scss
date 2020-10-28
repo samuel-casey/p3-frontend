@@ -30,14 +30,23 @@
 			width: 50px;
 			margin-right: 20px;
 		}
-
-		.list {
-            background: $sca-pink;
-			.item-info {
-				background: $sca-pink;
-			}
-		}
 	}
+}
+
+    
+.item-btns {
+    display: block;
+    // width: 35px;
+    margin-right: 20px;
+
+    button {
+        width: 35px;
+        
+    }
+
+    .btn-liked {
+        background-color:  $sca-pink;
+    }
 }
     .btn-liked {
         background-color:  $sca-pink;
