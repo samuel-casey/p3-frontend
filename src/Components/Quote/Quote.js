@@ -14,7 +14,11 @@ export default function Quote() {
 		const quoteList = await response.json();
 		const randomNumber = Math.floor(Math.random() * quoteList.length);
 		const quoteObj = quoteList[randomNumber];
-		setQuoteInfo({ quote: quoteObj.quote, author: quoteObj.author });
+		setQuoteInfo({
+			quote: quoteObj.quote,
+			author: quoteObj.author,
+			_id: quoteObj._id,
+		});
 	};
 
 	useEffect(() => {
@@ -24,6 +28,7 @@ export default function Quote() {
 	// const quotes = quoteList.map((item, index) => {
 	return (
 		<div className='quote'>
+			{quoteInfo._id}
 			<div className='quote-body'>
 				<p className='random-quote'>
 					{quoteInfo.quote} -{quoteInfo.author}
