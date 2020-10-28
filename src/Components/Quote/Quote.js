@@ -2,7 +2,6 @@ import React, { useEffect, useContext, useState } from 'react';
 import './Quote.scss';
 import { GlobalContext } from '../../App';
 
-
 export default function Quote(props) {
 	const { gState, setGState } = useContext(GlobalContext);
 
@@ -23,7 +22,6 @@ export default function Quote(props) {
 		getQuote();
 	}, []);
 
-	const quoteList = quoteList.map((item, index) => {
 	return (
 		<div className='quote'>
 			<div className='quote-body'>
@@ -34,11 +32,10 @@ export default function Quote(props) {
 			<button
 				className='quote-btn like'
 				onClick={() => {
-					props.handleFav(item);
+					// props.handleFav(item);
 				}}>
 				Like
 			</button>
 		</div>
 	);
-	});
 }
