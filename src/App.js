@@ -14,7 +14,8 @@ export const GlobalContext = createContext(null);
 
 function App() {
 	const [gState, setGState] = useState({
-		url: 'https://self-care-app-backend.herokuapp.com',
+		// url: 'https://self-care-app-backend.herokuapp.com',
+		url: 'http://localhost:4000',
 		token: null,
 		email: null,
 	});
@@ -41,8 +42,6 @@ function App() {
 	const getWishList = async (token) => {
 		try {
 			/// NEED TO MAKE SURE ONLY AUTH'ED USER'S ITEMS ARE in GET of WISHLIST.JS controller
-			console.log(gState);
-			console.log(`BEARER ${gState.token}`);
 			const response = await fetch(gState.url + '/wishlist/', {
 				method: 'get',
 				headers: {
