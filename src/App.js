@@ -35,8 +35,6 @@ function App() {
 	const getWishList = async (token) => {
 		try {
 			/// NEED TO MAKE SURE ONLY AUTH'ED USER'S ITEMS ARE in GET of WISHLIST.JS controller
-			console.log(gState);
-			console.log(`BEARER ${gState.token}`);
 			const response = await fetch(gState.url + '/wishlist/', {
 				method: 'get',
 				headers: {

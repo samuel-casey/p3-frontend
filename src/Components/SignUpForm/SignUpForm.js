@@ -31,9 +31,13 @@ export default function SignUpForm(props) {
 					'Content-Type': 'application/json',
 				},
 			});
+
 			const numDemoUsers = await demoNumber.json();
+			console.log(numDemoUsers);
+
 			const demoEmail = `demo${numDemoUsers + 1}@pause.app`;
 			const demoPassword = 'demo';
+
 			const demoAccountCreds = {
 				email: demoEmail,
 				password: demoPassword,
@@ -42,7 +46,6 @@ export default function SignUpForm(props) {
 			console.log(demoAccountCreds);
 
 			// create a demo account with the new demoUser's credentials
-
 			const createDemoAccount = await fetch(url + '/auth/signup', {
 				method: 'post',
 				headers: {
