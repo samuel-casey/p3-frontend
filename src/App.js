@@ -93,9 +93,9 @@ function App() {
 	};
 
 	const handleUpdate = async (updatedItem) => {
-//where does _id live? in gState?
+		console.log('updateditem._id', updatedItem._id)
 		try {
-			const updatedItemList = await fetch(gState.url + '/wishlist/' + gState._id, {
+			const updatedItemList = await fetch(gState.url + '/wishlist/' + updatedItemList._id, {
 				method: 'put',
 				headers: {
 					'Content-Type': 'application/json',
@@ -104,6 +104,7 @@ function App() {
 				body: JSON.stringify(updatedItem),
 			});
 			const response = await updatedItemList.json();
+	//need to do more inspecting here
 			setWishList(response);
 			getWishList(gState.token)
 		} catch (error) {

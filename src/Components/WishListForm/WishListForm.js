@@ -4,6 +4,7 @@ import './WishListForm.scss';
 
 
 export default function WishListForm(props) {
+	console.log('form props', props)
 	const { gState, setGState } = useContext(GlobalContext);
 	const { url } = gState;
 	const { wishList, setWishList } = props;
@@ -39,9 +40,10 @@ export default function WishListForm(props) {
 
 	const handleSubmit = (event) => {
 	event.preventDefault();
+	const {_id} = props.item
 	const { title, category, time_minutes } = formData
 	const {email} = gState
-	const newItem = { title, category, time_minutes, email }
+	const newItem = { _id, title, category, time_minutes, email }
 	props.handleSubmit(newItem);
 	console.log('handlesubmit newItem', newItem)
     props.history.push("/wishlist");
@@ -56,7 +58,7 @@ export default function WishListForm(props) {
 	return (
 		<div className='wishlist-form'>
 			<p>Add or Update an Item</p>
-			<form onSubmit={handleSubmit}>
+			<form onSubmit={handleSubmit}> 
 				<input
 					className='form-text-input'
 					type='text'
