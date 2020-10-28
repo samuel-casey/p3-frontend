@@ -26,7 +26,9 @@ function App() {
 	const [likedList, setLikedList] = useState([]);
 
 	const [selectedItem, setSelectedItem] = useState();
+	
 	const selectItem = (item) => {
+		console.log('selecteditem', item)
 		setSelectedItem(item)
 	}
 
@@ -84,8 +86,8 @@ function App() {
 				body: JSON.stringify(newItem),
 			});
 			const response = await wishList.json();
-			console.log('newItem: ', response);//still returning data.yay.
-			setWishList(response);
+			console.log('newItem: ', response);
+			
 			getWishList(gState.token);
 		} catch (error) {
 			console.log(error);
@@ -93,9 +95,9 @@ function App() {
 	};
 
 	const handleUpdate = async (updatedItem) => {
-		console.log('updateditem._id', updatedItem._id)
+		console.log('updateditem', updatedItem)
 		try {
-			const updatedItemList = await fetch(gState.url + '/wishlist/' + updatedItemList._id, {
+			const updatedItemList = await fetch(gState.url + '/wishlist/' + updatedItem._id, {
 				method: 'put',
 				headers: {
 					'Content-Type': 'application/json',
@@ -105,7 +107,7 @@ function App() {
 			});
 			const response = await updatedItemList.json();
 	//need to do more inspecting here
-			setWishList(response);
+			// setWishList(response);
 			getWishList(gState.token)
 		} catch (error) {
 			console.log(error);

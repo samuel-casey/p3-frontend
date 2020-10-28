@@ -11,6 +11,7 @@ export default function WishListForm(props) {
 
 	//props.item in default useState here is to create a blank form
 	const [formData, setFormData] = useState(props.item);
+	console.log('formData props.item', props.item)
 
 	// const input = React.useRef(null)
 
@@ -40,10 +41,10 @@ export default function WishListForm(props) {
 
 	const handleSubmit = (event) => {
 	event.preventDefault();
-	const {_id} = props.item
+	// const {_id} = props.item
 	const { title, category, time_minutes } = formData
 	const {email} = gState
-	const newItem = { _id, title, category, time_minutes, email }
+	const newItem = {...formData, title, category, time_minutes, email }
 	props.handleSubmit(newItem);
 	console.log('handlesubmit newItem', newItem)
     props.history.push("/wishlist");
