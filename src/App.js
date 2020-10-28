@@ -25,6 +25,11 @@ function App() {
 	const [completedList, setCompletedList] = useState([]);
 	const [likedList, setLikedList] = useState([]);
 
+	const [selectedItem, setSelectedItem] = useState();
+	const selectItem = (item) => {
+		setSelectedItem(item)
+	}
+
 	const emptyWishListItem = {
 		title: '',
 		category: '',
@@ -63,6 +68,44 @@ function App() {
 			setLikedList(likes);
 			setWishList(wish);
 			setCompletedList(complete);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const handleCreate = async (newItem) => {
+		try {
+			const wishList = await fetch(gState.url + '/wishlist/', {
+				method: 'post',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `bearer ${gState.token}`,
+				},
+				body: JSON.stringify(newItem),
+			});
+			const response = await wishList.json();
+			console.log('newItem: ', response);//still returning data.yay.
+			setWishList(response);
+			getWishList(gState.token);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const handleUpdate = async (updatedItem) => {
+//where does _id live? in gState?
+		try {
+			const updatedItemList = await fetch(gState.url + '/wishlist/' + gState._id, {
+				method: 'put',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `bearer ${gState.token}`,
+				},
+				body: JSON.stringify(updatedItem),
+			});
+			const response = await updatedItemList.json();
+			setWishList(response);
+			getWishList(gState.token)
 		} catch (error) {
 			console.log(error);
 		}
@@ -173,6 +216,7 @@ function App() {
 											handleCompleted={handleCompleted}
 											handleLike={handleLike}
 											handleDelete={handleDelete}
+											selectItem={selectItem}
 											// setWishList={setWishList}
 										/>
 									</>
@@ -204,9 +248,24 @@ function App() {
 										item={emptyWishListItem}
 										wishList={wishList}
 										setWishList={setWishList}
+										handleSubmit={handleCreate}
+										label="Create New Item"
 									/>
 								);
 							}}
+						/>
+						<Route
+							exact
+							path='/editform'
+							render={(rp) => {
+								return (
+								<WishListForm
+									{...rp}
+									item={selectedItem}
+									handleSubmit={handleUpdate}
+									label="Update Item"
+								/>
+							)}}
 						/>
 						<Route
 							path='/likeditems'
