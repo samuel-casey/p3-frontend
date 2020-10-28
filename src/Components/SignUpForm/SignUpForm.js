@@ -17,6 +17,25 @@ export default function SignUpForm(props) {
 	const [attempted, setAttempted] = useState(0);
 	const [errorMsg, setErrorMsg] = useState('');
 
+	const handleDemoUserClick = async (e) => {
+		e.preventDefault();
+
+		// GET DEMO USER NUMBER
+
+		try {
+			const demoNumber = await fetch(url + '/demo', {
+				method: 'get',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			});
+			const response = demoNumber.json();
+			console.log(response);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const { email, password, confirmPassword } = formData;
@@ -71,6 +90,15 @@ export default function SignUpForm(props) {
 		</Link>
 	);
 
+	const demo = (
+		<input
+			onClick={handleDemoUserClick}
+			className='form-btn'
+			type='submit'
+			value='Try a demo account.'
+		/>
+	);
+
 	return (
 		<div className='sign-up-page'>
 			<h2>Sign up</h2>
@@ -102,6 +130,7 @@ export default function SignUpForm(props) {
 				/>
 				<input type='submit' className='form-btn' />
 				{login}
+				{demo}
 			</form>
 		</div>
 	);

@@ -14,7 +14,8 @@ export const GlobalContext = createContext(null);
 
 function App() {
 	const [gState, setGState] = useState({
-		url: 'https://self-care-app-backend.herokuapp.com',
+		// url: 'https://self-care-app-backend.herokuapp.com',
+		url: 'http://localhost:4000',
 		token: null,
 		email: null,
 	});
