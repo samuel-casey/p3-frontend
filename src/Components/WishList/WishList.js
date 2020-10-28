@@ -38,7 +38,7 @@ export default function WishList(props) {
 					</div>
 					<div className='item-btns'>
 						<button
-							className='item-btns edit'
+							className='edit'
 							onClick={() => {
 								props.selectItem(item);
 								props.history.push('/editform');
@@ -47,19 +47,19 @@ export default function WishList(props) {
 						</button>
 
 						<button
-							className='item-btns delete'
+							className='delete'
 							onClick={() => {
 								props.handleDelete(item);
 							}}>
-							Delete
+							<i class="fas fa-times"></i>
 						</button>
 
 						<button
-							className='item-btns completed'
+							className='completed'
 							onClick={() => {
 								props.handleCompleted(item);
 							}}>
-							Done
+							<i class="fas fa-check"></i>
 						</button>
 
 						<button
@@ -81,7 +81,7 @@ export default function WishList(props) {
 	return (
 		<>
 			<div className='page-title'>Wish List</div>
-			<button onClick={() => {props.history.push('/wishlistform')}}>Add New Item</button>
+			<button onClick={() => {props.history.push('/wishlistform')}}><i class="fas fa-plus"></i> New Item</button>
 			{/* {isLoggedIn} */}
 			{props.wishList.length > 0 ? wishList : loading}
 			{/* /// FOR TESTING ONLY //// */}

@@ -19,9 +19,16 @@
 
 .item-btns {
     display: block;
-    width: 50px;
+    // width: 35px;
     margin-right: 20px;
-}
+
+    button {
+        width: 35px;
+        
+    }
+
     .btn-liked {
         background-color:  $sca-pink;
     }
+
+}
