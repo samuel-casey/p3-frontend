@@ -63,11 +63,12 @@ export default function WishList(props) {
 						</button>
 
 						<button
-							className='item-btns like'
+							className={item.isLiked ? 'btn-liked' : 'btn-notliked'}
+							// className='btn-liked'
 							onClick={() => {
 								props.handleLike(item);
 							}}>
-							Like
+							<i class="far fa-thumbs-up"></i>
 						</button>
 					</div>
 				</div>
