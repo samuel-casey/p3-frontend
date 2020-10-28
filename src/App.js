@@ -115,7 +115,8 @@ function App() {
 
 	const handleCompleted = async (wishListItem) => {
 		try {
-			wishListItem.isComplete = true;
+			// wishListItem.isComplete = true;
+			wishListItem.isComplete = !wishListItem.isComplete
 			console.log(wishListItem);
 
 			const completedItem = await fetch(
@@ -131,7 +132,7 @@ function App() {
 			);
 			const response = await completedItem.json();
 			console.log('completedItem: ', response);
-			setCompletedList(response);
+			// setCompletedList(response);
 			getWishList(gState.token);
 		} catch (error) {
 			console.log(error);
@@ -236,6 +237,7 @@ function App() {
 											handleLike={handleLike}
 											handleDelete={handleDelete}
 											completedList={completedList}
+											handleCompleted={handleCompleted}
 										/>
 									</>
 								);
