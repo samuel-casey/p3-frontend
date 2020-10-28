@@ -47,11 +47,11 @@ export default function CompletedList(props) {
 					</button>
 
 					<button
-						className='item-btns like'
+						className={item.isLiked ? 'btn-liked' : 'btn-notliked'}
 						onClick={() => {
 							props.handleLike(item);
 						}}>
-						Like
+						<i class="far fa-thumbs-up"></i>
 					</button>
 				</div>
 			</div>
