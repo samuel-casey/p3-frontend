@@ -286,13 +286,12 @@ function App() {
 										<Quote />
 										<WishList
 											{...rp}
-											// item={emptyWishListItem}
 											wishList={wishList}
 											handleCompleted={handleCompleted}
 											handleLike={handleLike}
 											handleDelete={handleDelete}
 											selectItem={selectItem}
-											// setWishList={setWishList}
+											handleDemoUserClick={handleDemoUserClick}
 										/>
 									</>
 								);
@@ -349,13 +348,14 @@ function App() {
 							path='/editform'
 							render={(rp) => {
 								return (
-								<WishListForm
-									{...rp}
-									item={selectedItem}
-									handleSubmit={handleUpdate}
-									label="Update Item"
-								/>
-							)}}
+									<WishListForm
+										{...rp}
+										item={selectedItem}
+										handleSubmit={handleUpdate}
+										label='Update Item'
+									/>
+								);
+							}}
 						/>
 						<Route
 							path='/likeditems'
