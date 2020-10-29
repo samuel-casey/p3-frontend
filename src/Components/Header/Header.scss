@@ -73,4 +73,10 @@ nav {
         #hamburger {
             display: none !important;
         }
+
+        nav {
+            .welcome-msg {
+                display: none;
+            }
+        }
 }
