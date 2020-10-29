@@ -75,17 +75,3 @@ export default function LogInForm(props) {
 	);
 }
 
-///// REMOVED FROM LINE AFTER props.history.push('/wishlist') bc I think we handle this error on the backend
-// if (response.status === 200) {
-// 	const newUser = await response;
-// 	// set current user to newly logged in user
-// 	await setCurrentUser(newUser);
-// 	//get activities of the new user
-// 	// if there was an error with the login...
-// } else {
-// 	// if there's some sort of error from the server (e.g. wrong pw, no user found, send an alert and try again)
-// 	alert(`Woops! ${response.error} Please try again`);
-// 	console.log(response);
-// 	// reload the page to clear form and avoid getting a React error
-// 	// document.location.reload();
-// }

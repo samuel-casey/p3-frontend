@@ -128,12 +128,8 @@ export default function SignUpForm(props) {
 	};
 
 	const login = (
-		<Link to='/login'>
-			<input
-				className='form-btn'
-				type='submit'
-				value='Have an account? Proceed to log in.'
-			/>
+		<Link className='form-btn' to='/login'>
+			<span>Have an account? Log in.</span>
 		</Link>
 	);
 
@@ -175,9 +171,11 @@ export default function SignUpForm(props) {
 					value={formData.confirmPassword}
 					onChange={handleChange}
 				/>
-				<input type='submit' className='form-btn' />
-				{login}
-				{demo}
+				<div className='form-btn-div'>
+					<input type='submit' className='form-btn' />
+					{login}
+					{demo}
+				</div>
 			</form>
 		</div>
 	);

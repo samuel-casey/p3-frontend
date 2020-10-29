@@ -9,6 +9,7 @@ export default function LogOutBtn() {
 	return (
 		<Link>
 			<button
+				className='nav-btn'
 				onClick={() => {
 					window.localStorage.removeItem('token');
 					window.localStorage.removeItem('email');

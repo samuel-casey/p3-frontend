@@ -1,32 +1,41 @@
 @import '../../variables.scss';
 
-@media screen and (min-width: 425px) {
+
 	.sign-up-page {
 		h2 {
 			color: $sca-dark-blue;
 			margin: 1rem auto;
-			text-decoration: underline;
 		}
 
 		display: flex;
 		flex-direction: column;
-		width: 80vw;
+		width: 70vw;
 		align-items: center;
 		margin: 0 auto;
 		background: $sca-pink;
+		border-radius: 5px;
 
 		.sign-up-form {
 			display: flex;
 			flex-direction: column;
-			line-height: 2rem;
+			line-height: 3rem;
+			width: 70%;
+			height: 50vh;
 
-			input {
-				margin: 0.5rem;
+			.form-text-input {
+				margin: 1rem;
 				background-color: $sca-gray;
 				width: 100%;
 				align-self: center;
 				border: none;
+				border-radius: 5px;
 			}
+
+			.form-text-input:focus {
+				background-color: white;
+				border: 2px solid $sca-light-blue;
+			}
+
 		}
 
 		.form-btn {
@@ -35,6 +44,24 @@
 			color: $sca-gray;
 			border: 2px solid $sca-light-blue !important;
 			border-radius: 5px;
+			width: 80%;
+			max-width: 250px;
+			margin: 0.75rem;
+		}
+
+		.form-btn-div {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
 		}
 	}
+
+// THIS MAX-WIDTH MEDIA QUERY MAKES SURE THE SIGN UP FORM DOESNT GET TOO SMALL ON SCREENS SMALLER THAN 485PX
+// (TOO SMALL = PINK AREA IS SMALLER THAN THE WHITE INPUTS)
+@media screen and (max-width: 485px) {
+	
+	.sign-up-page {
+	 width: 95vw;
+	}
+		
 }
