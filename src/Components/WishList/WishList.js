@@ -5,7 +5,6 @@ import './WishList.scss';
 import Spinner from 'react-bootstrap/Spinner';
 
 export default function WishList(props) {
-
 	const { gState, setGState } = useContext(GlobalContext);
 
 	const wishList = props.wishList.map((item, index) => {
@@ -46,7 +45,6 @@ export default function WishList(props) {
 
 					<button
 						className={item.isLiked ? 'btn-liked' : 'btn-notliked'}
-						
 						onClick={() => {
 							props.handleLike(item);
 						}}>
@@ -107,7 +105,7 @@ export default function WishList(props) {
 
 	return (
 		<div className='list-page'>
-			<div className='page-title'>Wish List</div>
+			<div className='page-title'>My Self-Care Wish List</div>
 			{conditionalButtons}
 			{gState.token ? (
 				wishListLoaded

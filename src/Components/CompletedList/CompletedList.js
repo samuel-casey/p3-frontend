@@ -30,27 +30,27 @@ export default function CompletedList(props) {
 			<div className='list' key={index}>
 				<div className='item-info'>
 					<p className='time'>{item.time_minutes}</p>
-					
+
 					<div className='second-column'>
-						<p className='title'>{item.title}</p>	
+						<p className='title'>{item.title}</p>
 						<p className='category'>{item.category}</p>
 					</div>
 				</div>
 				<div className='item-btns'>
 					<button
-							className={item.isComplete ? 'btn-complete' : 'btn-notcomplete'}
-							onClick={() => {
-								props.handleCompleted(item);
-							}}>
-							<i class="fas fa-check"></i>
-						</button>
+						className={item.isComplete ? 'btn-complete' : 'btn-notcomplete'}
+						onClick={() => {
+							props.handleCompleted(item);
+						}}>
+						<i class='fas fa-check'></i>
+					</button>
 					<button
 						className='delete'
 						onClick={() => {
 							props.handleDelete(item);
 							// handleDelete(item);
 						}}>
-						<i class="fas fa-times"></i>
+						<i class='fas fa-times'></i>
 					</button>
 
 					<button
@@ -58,7 +58,7 @@ export default function CompletedList(props) {
 						onClick={() => {
 							props.handleLike(item);
 						}}>
-						<i class="far fa-star"></i>
+						<i class='far fa-star'></i>
 					</button>
 				</div>
 			</div>
@@ -67,7 +67,7 @@ export default function CompletedList(props) {
 	const empty = 'Take 5 minutes for a wishlist item';
 	return (
 		<div className='list-page'>
-			<div className='page-title'>Completed</div>
+			<div className='page-title'>Completed Self-Care Activities</div>
 			{props.completedList.length > 0 ? completed : empty}
 		</div>
 	);
