@@ -1,4 +1,5 @@
 import React, { useEffect, useContext, useState } from 'react';
+import { Route } from 'react-router-dom'
 import './Quote.scss';
 import { GlobalContext } from '../../App';
 
@@ -28,13 +29,15 @@ export default function Quote() {
 					{quoteInfo.quote} -{quoteInfo.author}
 				</p>
 			</div>
-			<button
-				className='quote-btn like'
-				onClick={() => {
-					// props.handleFav(item);
-				}}>
-				Like
-			</button>
+			<Route path='/auth/favs'>
+				<button
+					className={quoteInfo.isFav ? 'btn-fav' : 'btn-notfav'}
+					onClick={() => {
+						quoteInfo.handleFav();
+					}}>
+					<i class='far fa-heart'></i>
+				</button>
+			</Route>
 		</div>
 	);
 }
