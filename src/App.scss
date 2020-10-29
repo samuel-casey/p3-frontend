@@ -1,4 +1,5 @@
 @import "./variables.scss";
+@import 'bootstrap/dist/css/bootstrap.min.css';
 
 .App {
   text-align: center;
@@ -6,17 +7,30 @@
   color: $sca-light-blue;
 }
 
-h1 {
-  color: $sca-pink;
-  font-size: 40px;
-  margin-top: 150px;
-  text-align: right;
-  margin-right: 30px;
-}
+main {
+  display: flex;
+  flex-direction: column;
 
-h2 {
-  color: $sca-gray;
-  text-align: right;
-  margin-right: 30px;
-  margin-left: 100px;
+  h1 {
+    color: $sca-pink;
+    font-size: 40px;
+    margin-top: 150px;
+    text-align: right;
+    margin-right: 30px;
+  }
+  
+  h3 {
+    color: $sca-gray;
+    text-align: right;
+    margin-right: 30px;
+    margin-left: 100px;
+  }
+  
+  #home-logo {
+  
+    i {
+      color: $sca-light-blue;
+    }
+  }
+
 }
