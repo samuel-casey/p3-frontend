@@ -10,6 +10,7 @@ import WishListForm from './Components/WishListForm/WishListForm';
 import CompletedList from './Components/CompletedList/CompletedList';
 import LikedItems from './Components/LikedItems/LikedItems';
 import Header from './Components/Header/Header';
+import Footer from './Components/Footer/Footer';
 
 export const GlobalContext = createContext(null);
 
@@ -362,7 +363,9 @@ function App() {
 						<Route path='/login' render={(rp) => <LogInForm {...rp} />} />
 					</main>
 				</Switch>
-				<footer>FOOTER</footer>
+				<footer>
+					<Footer />
+				</footer>
 			</div>
 		</GlobalContext.Provider>
 	);

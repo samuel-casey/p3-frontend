@@ -5,6 +5,7 @@
   text-align: center;
   background-color: $sca-dark-blue;
   color: $sca-light-blue;
+  height: 100vh;
 }
 
 main {
@@ -33,4 +34,11 @@ main {
     }
   }
 
+  
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
 }
