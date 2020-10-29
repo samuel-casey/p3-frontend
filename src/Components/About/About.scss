@@ -1,5 +1,8 @@
 body{
     color: #284C65;
+    main{
+        color: #284C65;
+    
     div.section{
         display: flex;
         font-size: 1px;
@@ -7,6 +10,7 @@ body{
         color: aliceblue;
         background-color: aliceblue;
         margin-bottom: 35px;
+        }
     }
 }
 
@@ -81,24 +85,24 @@ div.pics {
     }
 
 }
-@media only screen and (min-width: 760px) {
-    div.us {
-        display: grid;
-        #Q{
-            grid-row: 1/2;
-            grid-column: 1/2;
-        }
-        #Jaime{
-            grid-row: 1/2;
-            grid-column: 1/2;
-        }
-        #Kim{
-            grid-row: 1/2;
-            grid-column: 1/2;
-        }
-        #Sam{
-            grid-row: 1/2;
-            grid-column: 1/2;
-        }
-    }
-}
+// @media only screen and (min-width: 760px) {
+//     div.us {
+//         display: grid;
+//         #Q{
+//             grid-row: 1/2;
+//             grid-column: 1/2;
+//         }
+//         #Jaime{
+//             grid-row: 1/2;
+//             grid-column: 1/2;
+//         }
+//         #Kim{
+//             grid-row: 1/2;
+//             grid-column: 1/2;
+//         }
+//         #Sam{
+//             grid-row: 1/2;
+//             grid-column: 1/2;
+//         }
+//     }
+// }

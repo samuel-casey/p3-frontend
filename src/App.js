@@ -11,6 +11,7 @@ import CompletedList from './Components/CompletedList/CompletedList';
 import LikedItems from './Components/LikedItems/LikedItems';
 import Header from './Components/Header/Header';
 import Footer from './Components/Footer/Footer';
+import About from './Components/About/About'
 
 export const GlobalContext = createContext(null);
 
