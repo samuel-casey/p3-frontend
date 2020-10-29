@@ -49,6 +49,7 @@ function App() {
 		try {
 			// determine what the demoUser's credentials should be based on the # of demo users that exists already
 
+
 			const demoNumber = await fetch(url + '/demo', {
 				method: 'get',
 				headers: {
@@ -98,7 +99,22 @@ function App() {
 				window.localStorage.setItem('token', JSON.stringify(response.token));
 				window.localStorage.setItem('email', JSON.stringify(response.email));
 				setGState({ ...gState, token: response.token, email: response.email });
-			}
+
+				console.log('response token', response.token)
+
+				//seeding data for demo user
+				const demoSeed = await fetch(url + '/demo/seed', {
+				method: 'post',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `bearer ${response.token}`,
+				}
+				})
+				const json = await demoSeed.json()
+				console.log('demo seeded', json)
+				getWishList(response.token)
+				}
+
 		} catch (error) {
 			console.log(error);
 		}
@@ -121,7 +137,6 @@ function App() {
 			// loop through DB items and push to appropriate temp list
 			for (let i of json) {
 				if (i.isLiked === true) {
-					console.log('liked?', i);
 					likes.push(i);
 				}
 				if (i.isComplete === true) {
@@ -158,7 +173,6 @@ function App() {
 	};
 
 	const handleUpdate = async (updatedItem) => {
-		console.log('updateditem', updatedItem);
 		try {
 			const updatedItemList = await fetch(
 				gState.url + '/wishlist/' + updatedItem._id,
@@ -182,9 +196,7 @@ function App() {
 
 	const handleCompleted = async (wishListItem) => {
 		try {
-			// wishListItem.isComplete = true;
 			wishListItem.isComplete = !wishListItem.isComplete;
-			console.log(wishListItem);
 
 			const completedItem = await fetch(
 				gState.url + '/wishlist/' + wishListItem._id,
@@ -198,8 +210,6 @@ function App() {
 				}
 			);
 			const response = await completedItem.json();
-			console.log('completedItem: ', response);
-			// setCompletedList(response);
 			getWishList(gState.token);
 		} catch (error) {
 			console.log(error);
@@ -209,7 +219,6 @@ function App() {
 	const handleLike = async (wishListItem) => {
 		try {
 			wishListItem.isLiked = !wishListItem.isLiked;
-			console.log(wishListItem);
 
 			const toggledLikeItem = await fetch(
 				gState.url + '/wishlist/' + wishListItem._id,
@@ -223,7 +232,6 @@ function App() {
 				}
 			);
 			const response = await toggledLikeItem.json();
-			console.log('liked/unliked Item: ', response);
 			getWishList(gState.token);
 		} catch (error) {
 			console.log(error);
@@ -243,7 +251,6 @@ function App() {
 				}
 			);
 			const response = await deletedItem.json();
-			console.log('deletedItem: ', response);
 			getWishList(gState.token);
 		} catch (error) {
 			console.log(error);
@@ -344,20 +351,6 @@ function App() {
 							}}
 						/>
 						<Route
-							exact
-							path='/editform'
-							render={(rp) => {
-								return (
-									<WishListForm
-										{...rp}
-										item={selectedItem}
-										handleSubmit={handleUpdate}
-										label='Update Item'
-									/>
-								);
-							}}
-						/>
-						<Route
 							path='/likeditems'
 							render={(rp) => {
 								return (
@@ -384,9 +377,3 @@ function App() {
 }
 
 export default App;
-
-///GET index of wishlist items
-///this should actually go in WishList component
-// const {gState, setGState} = React.useContext(GlobalCtx)
-
-//////////////////////////////////////////
