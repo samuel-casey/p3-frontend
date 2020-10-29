@@ -40,8 +40,10 @@ export default function Header(props) {
 				</Navbar.Collapse>
 			</Navbar>
 			<p className='welcome-msg'>
-				Welcome {emailOrDemo === 'demo' ? 'to the ' : null}
-				<span className='logged-in-email'>{emailOrDemo}</span>!
+				Welcome{' '}
+				{emailOrDemo === 'demo'
+					? `to the ${emailOrDemo}!`
+					: `back ${emailOrDemo}!`}
 			</p>
 		</>
 	);
@@ -78,12 +80,12 @@ export default function Header(props) {
 						</Nav.Link>
 						<Nav.Link href='/about'>About</Nav.Link>
 					</Nav>
+					<p className='welcome-msg'>
+						Welcome <span className='logged-in-email'>pause.app</span>! Sign up,
+						sign in, or try a demo for help making time for self-care.
+					</p>
 				</Navbar.Collapse>
 			</Navbar>
-			<p className='welcome-msg'>
-				Welcome <span className='logged-in-email'>pause.app</span>! Sign up,
-				sign in, or try a demo for help making time for self-care.
-			</p>
 		</>
 	);
 
