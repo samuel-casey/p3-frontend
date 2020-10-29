@@ -5,11 +5,9 @@ import './WishList.scss';
 import Spinner from 'react-bootstrap/Spinner';
 
 export default function WishList(props) {
-	console.log('wishlist props', props); //returns only the one new item. Not the wishList array.
 
 	const { gState, setGState } = useContext(GlobalContext);
 
-	//When creating new item, gives error that .map is not a function, but I refresh and it's added...
 	const wishList = props.wishList.map((item, index) => {
 		return (
 			<div className='list' key={index}>
@@ -48,7 +46,7 @@ export default function WishList(props) {
 
 					<button
 						className={item.isLiked ? 'btn-liked' : 'btn-notliked'}
-						// className='btn-liked'
+						
 						onClick={() => {
 							props.handleLike(item);
 						}}>
