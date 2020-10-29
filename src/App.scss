@@ -1,26 +1,44 @@
 @import "./variables.scss";
+@import 'bootstrap/dist/css/bootstrap.min.css';
 
 .App {
   text-align: center;
   background-color: $sca-dark-blue;
   color: $sca-light-blue;
-}
-
-h1 {
-  color: $sca-pink;
-  font-size: 40px;
-  margin-top: 150px;
-  text-align: right;
-  margin-right: 30px;
-}
-
-h2 {
-  color: $sca-gray;
-  text-align: right;
-  margin-right: 30px;
-  margin-left: 100px;
+  height: 100vh;
 }
 
 main {
-  background-color: $sca-pink;;
+  display: flex;
+  flex-direction: column;
+
+  h1 {
+    color: $sca-pink;
+    font-size: 40px;
+    margin-top: 150px;
+    text-align: right;
+    margin-right: 30px;
+  }
+  
+  h3 {
+    color: $sca-gray;
+    text-align: right;
+    margin-right: 30px;
+    margin-left: 100px;
+  }
+  
+  #home-logo {
+  
+    i {
+      color: $sca-light-blue;
+    }
+  }
+
+  
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
 }

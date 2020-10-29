@@ -4,35 +4,19 @@ import { GlobalContext } from '../../App';
 import './WishList.scss';
 
 export default function WishList(props) {
-	console.log('wishlist props', props)//returns only the one new item. Not the wishList array.
+	console.log('wishlist props', props); //returns only the one new item. Not the wishList array.
 
 	const { gState, setGState } = useContext(GlobalContext);
-
-	// FOR TESTING ONLY - TO BE DELETED////////////
-	// const wishList = [
-	// 	{
-	// 		title: 'walk',
-	// 		time_minutes: 15,
-	// 		category: 'exercise',
-	// 	},
-	// 	{
-	// 		title: 'meditate',
-	// 		time_minutes: 15,
-	// 		category: 'relax',
-	// 	},
-	// ];
-	/////////////////////////////
-	// const isLoggedIn = gState.email ? gState.email : null;
 
 	//When creating new item, gives error that .map is not a function, but I refresh and it's added...
 	const wishList = props.wishList.map((item, index) => {
 		return (
-			<>
+			
 				<div className='list' key={index}>
 					<div className='item-info'>
-						<p className='title'>{item.title}</p>
-						<div className='second-row'>
-							<p className='time'>{item.time_minutes}</p>
+						<p className='time'>{item.time_minutes}</p>
+						<div className='second-column'>
+							<p className='title'>{item.title}</p>
 							<p className='category'>{item.category}</p>
 						</div>
 					</div>
@@ -51,7 +35,7 @@ export default function WishList(props) {
 							onClick={() => {
 								props.handleDelete(item);
 							}}>
-							<i class="fas fa-times"></i>
+							<i class='fas fa-times'></i>
 						</button>
 
 						<button
@@ -59,7 +43,7 @@ export default function WishList(props) {
 							onClick={() => {
 								props.handleCompleted(item);
 							}}>
-							<i class="fas fa-check"></i>
+							<i class='fas fa-check'></i>
 						</button>
 
 						<button
@@ -72,20 +56,26 @@ export default function WishList(props) {
 						</button>
 					</div>
 				</div>
-			</>
+		
 		);
 	});
 
 	const loading = 'Patient pause....';
 
 	return (
-		<>
+		<div className='list-page'>
 			<div className='page-title'>Wish List</div>
-			<button onClick={() => {props.history.push('/wishlistform')}}><i class="fas fa-plus"></i> New Item</button>
+			<button
+				className='form-btn'
+				onClick={() => {
+					props.history.push('/wishlistform');
+				}}>
+				<i class='fas fa-plus'></i> New Item
+			</button>
 			{/* {isLoggedIn} */}
 			{props.wishList.length > 0 ? wishList : loading}
 			{/* /// FOR TESTING ONLY //// */}
 			{/* {wishList.length > 0 ? wishList : loading} */}
-		</>
+		</div>
 	);
 }

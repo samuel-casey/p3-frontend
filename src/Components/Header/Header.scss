@@ -1,0 +1,76 @@
+@import "../../variables.scss";
+
+
+
+a {
+    color: $sca-gray !important;
+    text-decoration: none;
+}
+
+a:visited {
+    color: inherit;
+}
+
+nav {
+    #hamburger {
+        background-color: $sca-dark-blue;
+        border: 1px solid $sca-pink;
+        width: 45px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+    }
+
+    .nav-btn {
+        color: $sca-light-blue;
+        font-weight: 700;
+        border: none;
+        border-radius: 5px;
+        background-color: $sca-dark-blue;
+    }
+
+    #quotes-link {
+        .far.fa-heart {
+            color: $sca-pink;
+        }
+    }
+
+    .welcome-msg {
+        color: $sca-pink;
+    }
+
+    #nav-logo {
+        display: flex;
+        align-items: flex-end;
+        color: $sca-pink;
+
+        i {
+            margin: 2px;
+            color: $sca-light-blue;
+            background-color: $sca-dark-blue;
+            border-radius: 100%;
+        }
+    }
+
+}
+
+.welcome-msg {
+    color: $sca-pink;
+
+    .logged-in-email {
+        color: $sca-gray;
+    }
+}
+
+@media screen and (min-width: 768px) {
+ 
+        #quotes-link {
+            display: flex;
+        }
+
+        #hamburger {
+            display: none !important;
+        }
+}
