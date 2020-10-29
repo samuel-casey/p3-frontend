@@ -39,7 +39,7 @@ export default function TestNav() {
     // <Navbar>hi test</Navbar>
 	
 	
-    <Navbar collapseOnSelect expand="md" bg="" variant="white">
+    <Navbar collapseOnSelect expand="lg" bg="" variant="light">
       <Navbar.Brand href="#home">☰</Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">

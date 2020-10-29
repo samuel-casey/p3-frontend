@@ -8,6 +8,7 @@ import SignUpForm from './Components/SignUpForm/SignUpForm';
 import LogInForm from './Components/LogInForm/LogInForm';
 import TestNav from './Components/TestNav/TestNav';
 import WishListForm from './Components/WishListForm/WishListForm';
+import About from './Components/About/About'
 
 export const GlobalContext = createContext(null);
 
@@ -103,6 +104,7 @@ function App() {
 
 						<Route path='/signup' render={(rp) => <SignUpForm {...rp} />} />
 						<Route path='/login' render={(rp) => <LogInForm {...rp} />} />
+						<Route path ='/about'><About/></Route> 
 					</main>
 				</Switch>
 				<footer>FOOTER</footer>
