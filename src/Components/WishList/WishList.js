@@ -11,12 +11,12 @@ export default function WishList(props) {
 	//When creating new item, gives error that .map is not a function, but I refresh and it's added...
 	const wishList = props.wishList.map((item, index) => {
 		return (
-			<>
+			
 				<div className='list' key={index}>
 					<div className='item-info'>
-						<p className='title'>{item.title}</p>
-						<div className='second-row'>
-							<p className='time'>{item.time_minutes}</p>
+						<p className='time'>{item.time_minutes}</p>
+						<div className='second-column'>
+							<p className='title'>{item.title}</p>
 							<p className='category'>{item.category}</p>
 						</div>
 					</div>
@@ -27,7 +27,7 @@ export default function WishList(props) {
 								props.selectItem(item);
 								props.history.push('/editform');
 							}}>
-							Edit
+							<i class="fas fa-edit"></i>
 						</button>
 
 						<button
@@ -52,21 +52,21 @@ export default function WishList(props) {
 							onClick={() => {
 								props.handleLike(item);
 							}}>
-							<i class='far fa-thumbs-up'></i>
+							<i class="far fa-star"></i>
 						</button>
 					</div>
 				</div>
-			</>
+		
 		);
 	});
 
 	const loading = 'Patient pause....';
 
 	return (
-		<>
+		<div className='list-page'>
 			<div className='page-title'>Wish List</div>
 			<button
-				className='new-item'
+				className='form-btn'
 				onClick={() => {
 					props.history.push('/wishlistform');
 				}}>
@@ -76,6 +76,6 @@ export default function WishList(props) {
 			{props.wishList.length > 0 ? wishList : loading}
 			{/* /// FOR TESTING ONLY //// */}
 			{/* {wishList.length > 0 ? wishList : loading} */}
-		</>
+		</div>
 	);
 }

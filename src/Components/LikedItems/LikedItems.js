@@ -6,11 +6,11 @@ export default function LikedItems(props) {
 	// const likedItems = props.likedList.map((item, index) => {
 	const likedItems = props.likedList.map((item, index) => {
 		return (
-			<div className='liked-item' key={index}>
+			<div className='list' key={index}>
 				<div className='item-info'>
-					<p className='title'>{item.title}</p>
-					<div className='second-row'>
-						<p className='time'>{item.time_minutes}</p>
+					<p className='time'>{item.time_minutes}</p>
+					<div className='second-column'>
+						<p className='title'>{item.title}</p>
 						<p className='category'>{item.category}</p>
 					</div>
 				</div>
@@ -20,7 +20,7 @@ export default function LikedItems(props) {
 							onClick={() => {
 								props.handleLike(item);
 							}}>
-							<i class="far fa-thumbs-up"></i>
+							<i class="far fa-star"></i>
 						</button>
 					<button
 						className='delete'
@@ -36,9 +36,9 @@ export default function LikedItems(props) {
 	const empty = 'The activities you like best will be saved here';
 
 	return (
-		<>
+		<div className='list-page'>
 			<div className='page-title'>Activities I Liked Best</div>
 			{props.likedList.length > 0 ? likedItems : empty}
-		</>
+		</div>
 	);
 }
