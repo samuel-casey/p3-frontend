@@ -50,17 +50,17 @@ function App() {
 			// determine what the demoUser's credentials should be based on the # of demo users that exists already
 
 	//Kim's attempt at something...HALP
-			// const demoSeed = await fetch(url + '/demo/seed', {
-			// 	method: 'post',
-			// 	headers: {
-			// 		'Content-Type': 'application/json',
-			// 		Authorization: `bearer ${gState.token}`,
-			// 	},
-			// 	body: JSON.stringify(),
-			// })
-			// const json = await demoSeed.json()
-			// console.log('demo seeded', json)
-			// getWishList(gState.token)
+			const demoSeed = await fetch(url + '/demo/seed', {
+				method: 'post',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `bearer ${gState.token}`,
+				},
+				body: JSON.stringify(),
+			})
+			const json = await demoSeed.json()
+			console.log('demo seeded', json)
+			getWishList(gState.token)
 
 
 			const demoNumber = await fetch(url + '/demo', {
