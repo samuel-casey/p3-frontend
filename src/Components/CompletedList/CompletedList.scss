@@ -1,1 +1,28 @@
-@import "../../variables.scss"
+@import "../../variables.scss";
+
+.completed-item{
+    display: flex;
+    justify-content: space-between;
+}
+
+.second-row {
+    display: flex;
+}
+
+.time {
+    margin-left: 20px;
+}
+.category {
+    margin-left: 50px;
+}
+
+
+.item-btns {
+    display: block;
+    width: 50px;
+    margin-right: 20px;
+
+    .btn-complete {
+        background-color: $sca-pink;
+    } 
+}
