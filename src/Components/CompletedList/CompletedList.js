@@ -1,22 +1,31 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './CompletedList.scss';
+import { GlobalContext } from '../../App';
 
 export default function CompletedList(props) {
-	const completedList = [
-		{
-			title: 'walk',
-			time_minutes: 15,
-			category: 'exercise',
-		},
-		{
-			title: 'meditate',
-			time_minutes: 15,
-			category: 'relax',
-		},
-	];
+	console.log(props.completedList);
+	const { gState, setGState } = useContext(GlobalContext);
 
-	// const completed = props.completedList.map((item, index) => {
-	const completed = completedList.map((item, index) => {
+	// const handleDelete = async (wishListItem) => {
+	// 	try {
+	// 		const deletedItem = await fetch(
+	// 			gState.url + '/wishlist/' + wishListItem._id,
+	// 			{
+	// 				method: 'delete',
+	// 				headers: {
+	// 					'Content-Type': 'application/json',
+	// 					Authorization: `bearer ${gState.token}`,
+	// 				},
+	// 			}
+	// 		);
+	// 		const response = await deletedItem.json();
+	// 		console.log('deletedItem: ', response);
+	// 		// props.setWishList(response);
+	// 	} catch (error) {
+	// 		console.log(error);
+	// 	}
+	// };
+	const completed = props.completedList.map((item, index) => {
 		return (
 			<div className='completed-item' key={index}>
 				<div className='item-info'>
@@ -27,21 +36,28 @@ export default function CompletedList(props) {
 					</div>
 				</div>
 				<div className='item-btns'>
-					{/* do we want a delete button for the completed items? */}
 					<button
-						className='item-btns delete'
+							className={item.isComplete ? 'btn-complete' : 'btn-notcomplete'}
+							onClick={() => {
+								props.handleCompleted(item);
+							}}>
+							<i class="fas fa-check"></i>
+						</button>
+					<button
+						className='delete'
 						onClick={() => {
 							props.handleDelete(item);
+							// handleDelete(item);
 						}}>
-						Delete
+						<i class="fas fa-times"></i>
 					</button>
 
 					<button
-						className='item-btns like'
+						className={item.isLiked ? 'btn-liked' : 'btn-notliked'}
 						onClick={() => {
 							props.handleLike(item);
 						}}>
-						Like
+						<i class="far fa-thumbs-up"></i>
 					</button>
 				</div>
 			</div>
@@ -51,7 +67,7 @@ export default function CompletedList(props) {
 	return (
 		<>
 			<div className='page-title'>Completed</div>
-			{completedList.length > 0 ? completed : empty}
+			{props.completedList.length > 0 ? completed : empty}
 		</>
 	);
 }

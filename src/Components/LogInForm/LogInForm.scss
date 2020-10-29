@@ -1,16 +1,19 @@
 @import "../../variables.scss";
 
+
 .log-in-page {
     h2 {
-        color: $sca-pink;
+        color: $sca-dark-blue;
         margin: 1rem auto;
     }
     
     display: flex;
     flex-direction: column;
-    width: 80vw;
+    width: 70vw;
     align-items: center;
     margin: 0 auto;
+    background: $sca-pink;
+    border-radius: 5px;
 
     .log-in-form {
         display: flex;
@@ -26,12 +29,49 @@
         }
 
     }
-    .form-btn {
-        background-color: $sca-dark-blue !important;
-        text-decoration: none;
-        color: $sca-gray;
-        border: 2px solid $sca-light-blue !important;
-        border-radius: 5px;
-    }
+    	.log-in-form {
+			display: flex;
+			flex-direction: column;
+			line-height: 3rem;
+			width: 70%;
+			height: 30vh;
+
+			.form-text-input {
+				margin: 1rem;
+				background-color: $sca-gray;
+				width: 100%;
+				align-self: center;
+				border: none;
+				border-radius: 5px;
+			}
+
+			.form-text-input:focus {
+				background-color: white;
+				border: 2px solid $sca-light-blue;
+			}
+
+		}
+
+		.form-btn {
+			background-color: $sca-dark-blue !important;
+			text-decoration: none;
+			color: $sca-gray;
+			border: 2px solid $sca-light-blue !important;
+			border-radius: 5px;
+			width: 80%;
+			max-width: 250px;
+			margin: 0.75rem;
+		}
     
+}
+
+
+// THIS MAX-WIDTH MEDIA QUERY MAKES SURE THE SIGN UP FORM DOESNT GET TOO SMALL ON SCREENS SMALLER THAN 485PX
+// (TOO SMALL = PINK AREA IS SMALLER THAN THE WHITE INPUTS)
+@media screen and (max-width: 485px) {
+	
+	.log-in-page {
+	 width: 95vw;
+	}
+		
 }
