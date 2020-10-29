@@ -43,7 +43,7 @@ export default function WishList(props) {
 								props.selectItem(item);
 								props.history.push('/editform');
 							}}>
-							Edit
+							<i class="fas fa-edit"></i>
 						</button>
 
 						<button
@@ -68,7 +68,7 @@ export default function WishList(props) {
 							onClick={() => {
 								props.handleLike(item);
 							}}>
-							<i class="far fa-thumbs-up"></i>
+							<i class="far fa-star"></i>
 						</button>
 					</div>
 				</div>

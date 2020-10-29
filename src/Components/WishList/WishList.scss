@@ -1,6 +1,15 @@
 @import "../../variables.scss";
 
-.wishlist-item {
+.page-title {
+    color: #284c65;
+    font-size: 25px;
+    padding: 20px;
+    border-bottom: solid #284c65;
+
+}
+
+
+.list {
     display: flex;
     justify-content: space-between;
 }
