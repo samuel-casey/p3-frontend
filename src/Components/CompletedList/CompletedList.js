@@ -27,11 +27,12 @@ export default function CompletedList(props) {
 	// };
 	const completed = props.completedList.map((item, index) => {
 		return (
-			<div className='completed-item' key={index}>
+			<div className='list' key={index}>
 				<div className='item-info'>
-					<p className='title'>{item.title}</p>
-					<div className='second-row'>
-						<p className='time'>{item.time_minutes}</p>
+					<p className='time'>{item.time_minutes}</p>
+					
+					<div className='second-column'>
+						<p className='title'>{item.title}</p>	
 						<p className='category'>{item.category}</p>
 					</div>
 				</div>
@@ -57,7 +58,7 @@ export default function CompletedList(props) {
 						onClick={() => {
 							props.handleLike(item);
 						}}>
-						<i class="far fa-thumbs-up"></i>
+						<i class="far fa-star"></i>
 					</button>
 				</div>
 			</div>
@@ -65,9 +66,9 @@ export default function CompletedList(props) {
 	});
 	const empty = 'Take 5 minutes for a wishlist item';
 	return (
-		<>
+		<div className='list-page'>
 			<div className='page-title'>Completed</div>
 			{props.completedList.length > 0 ? completed : empty}
-		</>
+		</div>
 	);
 }

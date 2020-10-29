@@ -1,4 +1,72 @@
-@import '../../variables.scss';
+@import "../../variables.scss";
+
+.list-page {
+	background-color: $sca-pink;
+	margin: 20px;
+	padding: 10px;
+	font-family: 'Ovo', serif;
+
+	.page-title {
+    color: $sca-dark-blue;
+    font-size: 30px;
+    padding: 10px;
+    border-bottom: solid $sca-dark-blue;
+
+	}
+
+	//how come it doesn't take on the other properties of .form-btn from login?
+	.form-btn {
+		margin: 10px;
+	}
+	.list {
+    display: flex;
+	justify-content: space-between;
+	padding: 10px;
+	border-bottom: solid $sca-dark-blue;
+	
+
+		.item-info {
+			display: flex;
+			color: $sca-dark-blue;
+
+			.time {
+				font-size: 25px;
+			}
+
+			.title {
+				font-size: 20px;
+				text-align: left;
+				margin: 0px 10px 0 10px;
+			}
+
+			.category {
+				font-size: 20px;
+				text-align: left;
+				margin: 0px 10px 0 10px;
+			}
+		}
+
+		.item-btns {
+		display: grid;
+		grid-template-columns: 1fr, 1fr;
+		// margin-right: 10px;
+
+
+			button {
+			width: 35px;
+			}
+
+			.btn-liked {
+			background-color: $sca-light-blue;
+			}
+		}
+
+		
+	}
+
+    
+}
+
 
 @media screen and (min-width: 425px) {
 	.wishlist-page {
@@ -34,21 +102,6 @@
 }
 
     
-.item-btns {
-    display: block;
-    // width: 35px;
-    margin-right: 20px;
-
-    button {
-        width: 35px;
-        
-    }
-
-    .btn-liked {
-        background-color:  $sca-pink;
-	}
-	
-}
 
 .new-item {
 	width: fit-content;
