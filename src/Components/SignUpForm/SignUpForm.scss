@@ -18,11 +18,12 @@
 		.sign-up-form {
 			display: flex;
 			flex-direction: column;
-			line-height: 2rem;
+			line-height: 3rem;
 			width: 70%;
+			height: 50vh;
 
 			.form-text-input {
-				margin: 0.5rem;
+				margin: 1rem;
 				background-color: $sca-gray;
 				width: 100%;
 				align-self: center;
@@ -34,7 +35,7 @@
 				background-color: white;
 				border: 2px solid $sca-light-blue;
 			}
-			
+
 		}
 
 		.form-btn {
@@ -45,7 +46,7 @@
 			border-radius: 5px;
 			width: 80%;
 			max-width: 250px;
-			margin: 0.25rem;
+			margin: 0.75rem;
 		}
 
 		.form-btn-div {
