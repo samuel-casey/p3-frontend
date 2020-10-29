@@ -5,24 +5,42 @@
 	margin: 20px;
 	padding: 10px;
 	font-family: 'Ovo', serif;
+	border-radius: 5px;
 
 	.page-title {
     color: $sca-dark-blue;
-    font-size: 30px;
+    font-size: 2rem;
     padding: 10px;
-    border-bottom: solid $sca-dark-blue;
-
+	border-bottom: solid $sca-dark-blue;
 	}
 
 	//how come it doesn't take on the other properties of .form-btn from login?
 	.form-btn {
-		margin: 10px;
+			background-color: $sca-dark-blue !important;
+			text-decoration: none;
+			color: $sca-gray;
+			border: 2px solid $sca-light-blue !important;
+			border-radius: 5px;
+			width: 80%;
+			max-width: 250px;
+			margin: 0.75rem;
+		}
+
+	.logged-out-msg {
+		color: $sca-dark-blue;
 	}
+
+		.form-btn-div {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+        }
+
 	.list {
     display: flex;
 	justify-content: space-between;
 	padding: 10px;
-	border-bottom: solid $sca-dark-blue;
+	border-bottom: 1px solid $sca-dark-blue;
 	
 
 		.item-info {
@@ -45,6 +63,8 @@
 				margin: 0px 10px 0 10px;
 			}
 		}
+
+		
 
 		.item-btns {
 		display: grid;
