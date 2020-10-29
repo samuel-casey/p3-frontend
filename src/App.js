@@ -165,7 +165,6 @@ function App() {
 			});
 			const response = await wishList.json();
 			console.log('newItem: ', response);
-
 			getWishList(gState.token);
 		} catch (error) {
 			console.log(error);
@@ -358,6 +357,19 @@ function App() {
 									/>
 								);
 							}}
+						/>
+						<Route
+							exact
+							path='/editform'
+							render={(rp) => {
+								return (
+								<WishListForm
+									{...rp}
+									item={selectedItem}
+									handleSubmit={handleUpdate}
+									label="Update Item"
+								/>
+							)}}
 						/>
 						<Route
 							path='/likeditems'
