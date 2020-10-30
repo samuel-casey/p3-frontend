@@ -5,14 +5,16 @@
     border: solid $sca-pink;
     border-radius: 5px;
 
-    h3 {
+    h4 {
         color: $sca-gray;
         margin-bottom: 20px;
+        text-align: center;
     }
 
+
     .description {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         
         .activity {
         margin: 0 15px;
@@ -31,9 +33,14 @@
     }
 }
 
-@media(min-width: 1024px) {
-    h3 {
-        color: red;
-    }
+@media(min-width: 768px) {
+    
+.description-section {
+
+  .description {
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 1;
+  }
+}
 
 }

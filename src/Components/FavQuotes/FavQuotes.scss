@@ -4,4 +4,10 @@
 #fav-quotes-title {
 		color: $sca-pink !important;
 		text-align: center;
+		font-family: $serif;
+		font-style: normal;
+}
+
+i.far.fa-heart.fav-page-heart {
+	color: $sca-pink;
 }

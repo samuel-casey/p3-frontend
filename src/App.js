@@ -324,15 +324,9 @@ function App() {
 								self-care matters
 							</h2>
 							<AppDescription />
-							{/* <hr></hr> */}
-							{/* <h4>
-								pause.app keeps track of: - your self-care wishlist, self-care
-								activities you have completed - the self-care activities you
-								liked best - motivational quotes that inspire you.
-							</h4> */}
 							<h4 id='call-to-action'>
-								Sign up, sign in, or try a demo for help making time for
-								self-care.
+								Sign up, sign in, or try a demo from the menu to access full
+								features.
 							</h4>
 						</Route>
 						<Route

@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../App';
 import './FavQuotes.scss';
-import Quote from '../Quote/Quote';
 
-export default function FavQuotes(props) {
+export default function FavQuotes() {
 	const [favList, setFavList] = useState([]);
 	const { gState } = useContext(GlobalContext);
 	const { url } = gState;
@@ -35,24 +34,44 @@ export default function FavQuotes(props) {
 		getFavQuotes();
 	}, []);
 
-	const favQuotes = favList.map((quote, index) => {
+	const favQuotes = favList.map((item, index) => {
 		return (
-			<Quote
-				favPage={true}
-				quoteInfo={quote}
-				key={index}
-				handleFavClick={props.handleFavClick}
-			/>
+			<div className='fav-item' key={index}>
+				<div className='item-info'>
+					<p className='title'>{item.quote}</p>
+					<div className='second-row'>
+						<p className='author'>{item.author}</p>
+						<p className='category'>{item.theme}</p>
+					</div>
+				</div>
+			</div>
 		);
 	});
-	const empty = 'Your favorite quotes will be saved here';
+	const empty = (
+		<>
+			click{' '}
+			<span>
+				<i className='far fa-heart fav-page-heart'></i>
+			</span>{' '}
+			on quotes to see them here
+		</>
+	);
+
+	const logInMsg = (
+		<p>
+			Sign up, log in, or try a demo to{' '}
+			<span>
+				<i className='far fa-heart fav-page-heart'></i>
+			</span>{' '}
+			quotes.
+		</p>
+	);
 
 	return (
-		<>
-			<h3 id='fav-quotes-title'>Favorited Quotes</h3>
-			<div className='fav-quotes-container'>
-				{favList.length > 0 ? favQuotes : empty}
-			</div>
-		</>
+		<i>
+			<h3 id='fav-quotes-title'>Favorite Quotes</h3>
+			{favList.length > 0 ? favQuotes : empty}
+			{gState.token ? null : logInMsg}
+		</i>
 	);
 }

@@ -4,7 +4,7 @@ div.about-page{
     color: $sca-dark-blue;
     
     h1#about {
-        font-family: $accent !important;
+        font-family: $sans-serif !important;
         font-size: 3rem;
         font-weight: 700;
         color: $sca-pink;
@@ -27,6 +27,11 @@ div.about-page{
     color: $sca-gray;
     font-size: 20px;
     border-radius: 50%;
+
+    p {
+        text-align: justify;
+        padding: 1rem;
+    }
 }
 
     div.us{
@@ -103,6 +108,12 @@ div.about-page{
 }
 
  @media(min-width: 768px) {
+
+    #intro {
+        p {
+            font-size: 2rem;
+        }
+    }
    
 h1 {
     margin-left: 0%;
