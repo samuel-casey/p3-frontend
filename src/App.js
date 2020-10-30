@@ -1,7 +1,7 @@
 import React, { useState, createContext, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './App.scss';
-import Navigation from './Components/Nav/Navigation';
+import About from './Components/About/About';
 import Quote from './Components/Quote/Quote';
 import WishList from './Components/WishList/WishList';
 import SignUpForm from './Components/SignUpForm/SignUpForm';
@@ -99,6 +99,20 @@ function App() {
 				window.localStorage.setItem('token', JSON.stringify(response.token));
 				window.localStorage.setItem('email', JSON.stringify(response.email));
 				setGState({ ...gState, token: response.token, email: response.email });
+
+				console.log('response token', response.token);
+
+				//seeding data for demo user
+				const demoSeed = await fetch(url + '/demo/seed', {
+					method: 'post',
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: `bearer ${response.token}`,
+					},
+				});
+				const json = await demoSeed.json();
+				console.log('demo seeded', json);
+				getWishList(response.token);
 			}
 		} catch (error) {
 			console.log(error);
@@ -122,7 +136,6 @@ function App() {
 			// loop through DB items and push to appropriate temp list
 			for (let i of json) {
 				if (i.isLiked === true) {
-					console.log('liked?', i);
 					likes.push(i);
 				}
 				if (i.isComplete === true) {
@@ -159,7 +172,6 @@ function App() {
 	};
 
 	const handleUpdate = async (updatedItem) => {
-		console.log('updateditem', updatedItem);
 		try {
 			const updatedItemList = await fetch(
 				gState.url + '/wishlist/' + updatedItem._id,
@@ -173,8 +185,6 @@ function App() {
 				}
 			);
 			const response = await updatedItemList.json();
-			//need to do more inspecting here
-			// setWishList(response);
 			getWishList(gState.token);
 		} catch (error) {
 			console.log(error);
@@ -183,9 +193,7 @@ function App() {
 
 	const handleCompleted = async (wishListItem) => {
 		try {
-			// wishListItem.isComplete = true;
 			wishListItem.isComplete = !wishListItem.isComplete;
-			console.log(wishListItem);
 
 			const completedItem = await fetch(
 				gState.url + '/wishlist/' + wishListItem._id,
@@ -199,8 +207,6 @@ function App() {
 				}
 			);
 			const response = await completedItem.json();
-			console.log('completedItem: ', response);
-			// setCompletedList(response);
 			getWishList(gState.token);
 		} catch (error) {
 			console.log(error);
@@ -210,7 +216,6 @@ function App() {
 	const handleLike = async (wishListItem) => {
 		try {
 			wishListItem.isLiked = !wishListItem.isLiked;
-			console.log(wishListItem);
 
 			const toggledLikeItem = await fetch(
 				gState.url + '/wishlist/' + wishListItem._id,
@@ -224,7 +229,6 @@ function App() {
 				}
 			);
 			const response = await toggledLikeItem.json();
-			console.log('liked/unliked Item: ', response);
 			getWishList(gState.token);
 		} catch (error) {
 			console.log(error);
@@ -244,7 +248,6 @@ function App() {
 				}
 			);
 			const response = await deletedItem.json();
-			console.log('deletedItem: ', response);
 			getWishList(gState.token);
 		} catch (error) {
 			console.log(error);
@@ -265,18 +268,32 @@ function App() {
 		<GlobalContext.Provider value={{ gState, setGState }}>
 			<div className='App'>
 				<header>
-					<Header handleDemoUserClick={handleDemoUserClick} />
+					<Route
+						render={(rp) => (
+							<Header {...rp} handleDemoUserClick={handleDemoUserClick} />
+						)}
+					/>
 				</header>
-				<Switch>
-					<main>
+				<main>
+					<Switch>
 						<Route exact path='/'>
 							<h1 id='home-logo'>
 								<i class='fas fa-pause-circle'></i> pause.app
 							</h1>
-							<h3 className='welcome-msg'>
-								Welcome to our site! Sign up, sign in, or try a demo for help
-								making time for self-care.
-							</h3>
+							<h2 className='motto'>
+								pause<span className='blink_me1'>.</span> because mindful
+								self-care matters
+							</h2>
+							<hr></hr>
+							<h4>
+								pause.app keeps track of your self-care wishlist, self-care
+								activities you have completed, the self-care activities you
+								liked best, and motivational quotes that inspire you.
+							</h4>
+							<h4 id='call-to-action'>
+								Sign up, sign in, or try a demo for help making time for
+								self-care.
+							</h4>
 							<Quote />
 						</Route>
 						<Route
@@ -287,13 +304,12 @@ function App() {
 										<Quote />
 										<WishList
 											{...rp}
-											// item={emptyWishListItem}
 											wishList={wishList}
 											handleCompleted={handleCompleted}
 											handleLike={handleLike}
 											handleDelete={handleDelete}
 											selectItem={selectItem}
-											// setWishList={setWishList}
+											handleDemoUserClick={handleDemoUserClick}
 										/>
 									</>
 								);
@@ -346,37 +362,45 @@ function App() {
 							}}
 						/>
 						<Route
-							exact
-							path='/editform'
-							render={(rp) => {
-								return (
-								<WishListForm
-									{...rp}
-									item={selectedItem}
-									handleSubmit={handleUpdate}
-									label="Update Item"
-								/>
-							)}}
-						/>
-						<Route
 							path='/likeditems'
 							render={(rp) => {
 								return (
-									<LikedItems
-										{...rp}
-										likedList={likedList}
-										handleDelete={handleDelete}
-										handleLike={handleLike}
-									/>
+									<>
+										<Quote />
+										<LikedItems
+											{...rp}
+											likedList={likedList}
+											handleDelete={handleDelete}
+											handleLike={handleLike}
+										/>
+									</>
 								);
 							}}
 						/>
-
-						<Route path='/signup' render={(rp) => <SignUpForm {...rp} />} />
-						<Route path='/login' render={(rp) => <LogInForm {...rp} />} />
-						<Route path ='/about'><About/></Route> 
-					</main>
-				</Switch>
+						<Route
+							path='/signup'
+							render={(rp) => (
+								<>
+									<Quote />
+									<SignUpForm
+										{...rp}
+										handleDemoUserClick={handleDemoUserClick}
+									/>
+								</>
+							)}
+						/>
+						<Route
+							path='/login'
+							render={(rp) => (
+								<>
+									<Quote />
+									<LogInForm {...rp} />
+								</>
+							)}
+						/>
+						<Route path='/about' component={About} />
+					</Switch>
+				</main>
 				<footer>
 					<Footer />
 				</footer>
@@ -386,9 +410,3 @@ function App() {
 }
 
 export default App;
-
-///GET index of wishlist items
-///this should actually go in WishList component
-// const {gState, setGState} = React.useContext(GlobalCtx)
-
-//////////////////////////////////////////
