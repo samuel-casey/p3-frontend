@@ -1,1 +1,48 @@
-@import "../../variables.scss"
+@import "../../variables.scss";
+
+.quote {
+    color: $sca-gray;
+    text-align: left;
+    display: flex;
+    align-self: center;
+    margin: 1rem;
+    font-size: 1.5rem;
+    border: 2px solid $sca-light-blue;
+    padding: 0.5rem;
+    font-family: $accent;
+
+    i.far.far-heart {
+        font-size: 1rem;
+        font-weight: bolder;
+    }
+
+    div.quote-btn {
+        display: flex;
+        height: fit-content;
+        align-self: flex-end;
+        background-color: $sca-dark-blue;
+        border: none;
+        width: 20px;
+        height: 20px;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .btn-fav {
+        color: $sca-dark-blue;
+        background-color: $sca-pink !important;
+        border-radius: 5px;
+        padding: 1rem;
+    }
+    
+    .btn-not-fav {
+        color: $sca-gray;
+        padding: 1rem;
+    }
+    
+    .author {
+        font-style: italic;
+        color: $sca-light-blue;
+    }
+
+}

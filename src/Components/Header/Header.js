@@ -1,9 +1,8 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
 import LogOutBtn from '../LogOutBtn/LogOutBtn';
 import { GlobalContext } from '../../App';
 import './Header.scss';
-import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { Nav, Navbar } from 'react-bootstrap';
 
 export default function Header(props) {
 	const { gState, setGState } = useContext(GlobalContext);
@@ -21,7 +20,7 @@ export default function Header(props) {
 			<Navbar expand='md'>
 				<Navbar.Brand href='/'>
 					<div id='nav-logo'>
-						<i class='fas fa-pause-circle'></i> pause.app
+						<i className='fas fa-pause-circle'></i> pause.app
 					</div>
 				</Navbar.Brand>
 				<Navbar.Toggle aria-controls='basic-navbar-nav' id='hamburger' />
@@ -40,8 +39,10 @@ export default function Header(props) {
 				</Navbar.Collapse>
 			</Navbar>
 			<p className='welcome-msg'>
-				Welcome {emailOrDemo === 'demo' ? 'to the ' : null}
-				<span className='logged-in-email'>{emailOrDemo}</span>!
+				Welcome{' '}
+				{emailOrDemo === 'demo'
+					? `to the ${emailOrDemo}!`
+					: `back ${emailOrDemo}!`}
 			</p>
 		</>
 	);
@@ -51,7 +52,7 @@ export default function Header(props) {
 			<Navbar expand='md'>
 				<Navbar.Brand href='/'>
 					<div id='nav-logo'>
-						<i class='fas fa-pause-circle'></i> pause.app
+						<i className='fas fa-pause-circle'></i> pause.app
 					</div>
 				</Navbar.Brand>
 				<Navbar.Toggle
@@ -64,7 +65,10 @@ export default function Header(props) {
 						<br></br>
 						<Nav.Link>
 							<button
-								onClick={() => props.handleDemoUserClick()}
+								onClick={() => {
+									props.handleDemoUserClick();
+									props.history.push('/wishlist');
+								}}
 								className='nav-btn'>
 								Demo
 							</button>
@@ -78,12 +82,12 @@ export default function Header(props) {
 						</Nav.Link>
 						<Nav.Link href='/about'>About</Nav.Link>
 					</Nav>
+					<p className='welcome-msg'>
+						Welcome <span className='logged-in-email'>pause.app</span>! Sign up,
+						sign in, or try a demo for help making time for self-care.
+					</p>
 				</Navbar.Collapse>
 			</Navbar>
-			<p className='welcome-msg'>
-				Welcome <span className='logged-in-email'>pause.app</span>! Sign up,
-				sign in, or try a demo for help making time for self-care.
-			</p>
 		</>
 	);
 

@@ -1,0 +1,167 @@
+@import '../../variables.scss';
+
+div.about-page{
+    color: $sca-dark-blue;
+    
+    h1#about {
+        font-family: $sans-serif !important;
+        font-size: 3rem;
+        font-weight: 700;
+        color: $sca-pink;
+    }
+
+    main{
+        color: $sca-dark-blue;
+        
+        .custom-container {
+            display: grid;
+            grid-template-rows: repeat(4, 1fr);
+            grid-gap: 10px;
+        }
+        
+    }
+
+
+#intro {
+    background-color: $sca-dark-blue;
+    color: $sca-gray;
+    font-size: 20px;
+    border-radius: 50%;
+
+    p {
+        text-align: justify;
+        padding: 1rem;
+    }
+}
+
+    div.us{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: $sans-serif;
+        font-weight: bold;
+        background-color: $sca-pink;
+        padding: 0.5rem;
+        border: 0.5rem solid $sca-dark-blue;
+
+        i.fab.fa-github {
+            color: $sca-dark-blue;
+            font-size: 1.25rem;
+        }
+
+        span.abouts {
+            text-decoration: none;
+            font-size: 2rem;
+        }
+
+        p {
+            font-weight: normal;
+            width: 80%;
+            text-align: justify;
+        }
+
+        img {
+            height: 150px;
+            width: 150px;
+            border-radius: 50%;
+            margin-top: 10px;
+            border: 3px solid $sca-dark-blue;
+            object-fit: cover;
+        }
+
+        #Sam {
+            font-size: 23px;
+            display: flex;
+            flex-direction: column-reverse;
+            justify-content: space-between;
+            padding: 30px;
+            grid-row: 1;
+        }
+
+        #Jaime {
+            font-size: 23px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 30px;
+            grid-row: 2;
+        }
+
+        #Kim {
+            font-size: 23px;
+            display: flex;
+            flex-direction: column-reverse;
+            justify-content: space-between;
+            padding: 30px;
+            grid-row: 3;
+        }
+        #Q {
+            font-size: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-color: $sca-pink;
+            padding: 30px;
+            grid-row: 1;
+            }
+    }
+}
+
+ @media(min-width: 768px) {
+
+    #intro {
+        p {
+            font-size: 2rem;
+        }
+    }
+   
+h1 {
+    margin-left: 0%;
+    margin-right: 90%;
+}
+    .custom-container{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        width: 100%;
+        grid-gap: 10px;
+
+    div.us {
+        width: cover;
+        height: cover;
+        #Q{
+            grid-column: 2;
+            grid-row: 1;
+        }
+        
+        #Jaime{
+            grid-column: 2;
+            grid-row: 1;
+        }
+        #Kim{
+            grid-column: 1;
+            grid-row: 1;
+        }
+    
+        #Sam{
+            grid-column: 2;
+            grid-row: 2;
+        }
+    }
+
+    div.pics {
+        margin-bottom: 25px;
+        margin: 30px;
+        
+    }
+    .quote {
+        font-family: 'Norican', cursive;
+        color: $sca-pink;
+        font-size: 50px;
+        background-color: $sca-dark-blue;
+        margin-left: 20px;
+        height: 40%;
+        }
+
+    }
+ }

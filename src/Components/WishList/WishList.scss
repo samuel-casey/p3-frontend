@@ -1,4 +1,107 @@
-@import '../../variables.scss';
+@import "../../variables.scss";
+
+.list-page {
+	background-color: $sca-pink;
+	margin: 20px;
+	padding: 10px;
+	font-family: $serif;
+	border-radius: 5px;
+
+	.page-title {
+    color: $sca-dark-blue;
+    font-size: 2rem;
+    padding: 10px;
+	border-bottom: solid $sca-dark-blue;
+	}
+
+	//how come it doesn't take on the other properties of .form-btn from login?
+	.form-btn {
+			background-color: $sca-dark-blue !important;
+			text-decoration: none;
+			color: $sca-gray;
+			border: 2px solid $sca-light-blue !important;
+			border-radius: 5px;
+			width: 80%;
+			max-width: 250px;
+			margin: 0.75rem;
+		}
+
+	.logged-out-msg {
+		color: $sca-dark-blue;
+		text-align: center;
+	}
+
+		.form-btn-div {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+        }
+
+	.list {
+    display: flex;
+	justify-content: space-between;
+	padding: 10px;
+	border-bottom: 1px solid $sca-dark-blue;
+	
+
+		.item-info {
+			display: flex;
+			color: $sca-dark-blue;
+
+			.time {
+				font-size: 25px;
+			}
+
+			.title {
+				font-size: 20px;
+				text-align: left;
+				margin: 0px 10px 0 10px;
+			}
+
+			.category {
+				font-size: 20px;
+				text-align: left;
+				margin: 0px 10px 0 10px;
+			}
+		}
+
+		
+
+		.item-btns {
+		display: grid;
+		grid-template-columns: 1fr, 1fr;
+		// margin-right: 10px;
+
+
+			button {
+			width: 35px;
+			}
+
+			.btn-liked {
+			background-color: $sca-light-blue;
+			}
+		}
+
+	
+
+		
+	}
+
+    
+}
+
+	span.refresh {
+			background-color: $sca-dark-blue !important;
+			width: fit-content;
+			text-decoration: none;
+			color: $sca-gray;
+			border: 2px solid $sca-light-blue !important;
+			border-radius: 5px;
+			padding: 5px;
+			width: 80%;
+			max-width: 250px;
+		}
+
 
 @media screen and (min-width: 425px) {
 	.wishlist-page {
@@ -31,26 +134,4 @@
 			margin-right: 20px;
 		}
 	}
-}
-
-    
-.item-btns {
-    display: block;
-    // width: 35px;
-    margin-right: 20px;
-
-    button {
-        width: 35px;
-        
-    }
-
-    .btn-liked {
-        background-color:  $sca-pink;
-	}
-	
-}
-
-.new-item {
-	width: fit-content;
-	align-self: center;
 }

@@ -1,41 +1,44 @@
 import React, { useEffect, useContext, useState } from 'react';
+// import { Route } from 'react-router-dom'
 import './Quote.scss';
 import { GlobalContext } from '../../App';
 
 export default function Quote(props) {
-	const { gState, setGState } = useContext(GlobalContext);
+	const [favColor, setFavColor] = useState(false);
 
-	const [quoteInfo, setQuoteInfo] = useState({ quote: '', author: '' });
-	const { url } = gState;
-	let author;
-	let quote;
-	const getQuote = async () => {
-		const response = await fetch(url + '/quote');
-		const quoteList = await response.json();
-		const randomNumber = Math.floor(Math.random() * quoteList.length);
-		const quoteObj = quoteList[randomNumber];
-		console.log('quoteObj', quoteObj);
-		setQuoteInfo({ quote: quoteObj.quote, author: quoteObj.author });
-	};
-
-	useEffect(() => {
-		getQuote();
-	}, []);
-
-	return (
+	const notFavPage = (
 		<div className='quote'>
 			<div className='quote-body'>
 				<p className='random-quote'>
-					{quoteInfo.quote} -{quoteInfo.author}
+					{props.quoteInfo.quote}
+					<p className='author'>{`${props.quoteInfo.author}`}</p>
 				</p>
 			</div>
-			<button
-				className='quote-btn like'
+			<div
+				className={favColor ? 'quote-btn btn-fav' : 'quote-btn btn-not-fav'}
 				onClick={() => {
-					// props.handleFav(item);
+					props.handleFavClick();
+					setFavColor(!favColor);
 				}}>
-				Like
-			</button>
+				<i className='far fa-heart'></i>
+			</div>
 		</div>
 	);
+
+	const favPage = (
+		<div className='quote'>
+			<div className='quote-body'>
+				<p className='random-quote'>
+					{props.quoteInfo.quote}
+					<p className='author'>{`${props.quoteInfo.author}`}</p>
+				</p>
+			</div>
+			{/* Need to figure out how to let user unfavorite a quote still */}
+			<div className='quote-btn btn-fav'>
+				<i className='far fa-heart'></i>
+			</div>
+		</div>
+	);
+
+	return props.favPage ? favPage : notFavPage;
 }

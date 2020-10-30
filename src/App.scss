@@ -3,28 +3,63 @@
 
 .App {
   text-align: center;
-  background-color: $sca-dark-blue;
   color: $sca-light-blue;
-  height: 100vh;
+  height: fit-content;
+  min-height: 100vh;
+  background-color: $sca-dark-blue;
 }
 
 main {
   display: flex;
   flex-direction: column;
+  width: 95vw;
+  margin: 0 auto;
+  height: 100%;
 
-  h1 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    margin: 10px 30px;
+  }
+    .pause-p {
+        color: $sca-pink
+    }
+
+  h1#home-logo {
     color: $sca-pink;
     font-size: 40px;
     margin-top: 150px;
-    text-align: right;
-    margin-right: 30px;
+    text-align: left;
+    font-family: $sans-serif;
+  }
+
+  h2.motto {
+    text-align: left;
+    color: $sca-gray;
+    padding-top: 1rem;
+  }
+
+  .blink_me1 {
+    animation: blinker 2.5s linear infinite;
   }
   
-  h3 {
-    color: $sca-gray;
-    text-align: right;
+  hr {
+    width: 80%;
+    border-bottom: 1px dashed $sca-light-blue;
+  }
+
+  h4 {
+    color: $sca-light-blue;
+    text-align: left;
     margin-right: 30px;
-    margin-left: 100px;
+  }
+
+   h4#call-to-action {
+    color: $sca-pink;
+    text-align: center;
+    font-style: italic;
   }
   
   #home-logo {
@@ -33,12 +68,26 @@ main {
       color: $sca-light-blue;
     }
   }
+  @keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }
 
-  
 }
-
 footer {
-  position: absolute;
   bottom: 0;
+  z-index: 1;
+  position: fixed;
   width: 100vw;
+  height: fit-content;
+  background-color: $sca-dark-blue;
+  font-size: 0.85rem;
+  text-align: right;
+  font-style: italic;
+
+  a {
+    color: $sca-light-blue !important;
+  }
+
 }

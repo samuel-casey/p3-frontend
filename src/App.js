@@ -1,7 +1,7 @@
 import React, { useState, createContext, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './App.scss';
-import Navigation from './Components/Nav/Navigation';
+import About from './Components/About/About';
 import Quote from './Components/Quote/Quote';
 import WishList from './Components/WishList/WishList';
 import SignUpForm from './Components/SignUpForm/SignUpForm';
@@ -11,12 +11,13 @@ import CompletedList from './Components/CompletedList/CompletedList';
 import LikedItems from './Components/LikedItems/LikedItems';
 import Header from './Components/Header/Header';
 import Footer from './Components/Footer/Footer';
+import FavQuotes from './Components/FavQuotes/FavQuotes';
+import AppDescription from './Components/AppDescription/AppDescription';
 
 export const GlobalContext = createContext(null);
 
 function App() {
 	const [gState, setGState] = useState({
-		// url: 'http://localhost:4000', // TESTING URL
 		url: 'https://self-care-app-backend.herokuapp.com',
 		token: null,
 		email: null,
@@ -27,12 +28,50 @@ function App() {
 	const [wishList, setWishList] = useState([]);
 	const [completedList, setCompletedList] = useState([]);
 	const [likedList, setLikedList] = useState([]);
-
+	const [quoteInfo, setQuoteInfo] = useState({
+		quote: '',
+		author: '',
+		_id: '',
+	});
 	const [selectedItem, setSelectedItem] = useState();
 
 	const selectItem = (item) => {
 		console.log('selecteditem', item);
 		setSelectedItem(item);
+	};
+
+	// get quote from DB and render to page
+	const getQuote = async () => {
+		const response = await fetch(gState.url + '/quote');
+		const quoteList = await response.json();
+		const randomNumber = Math.floor(Math.random() * quoteList.length);
+		const quoteObj = quoteList[randomNumber];
+		setQuoteInfo({
+			quote: quoteObj.quote,
+			author: quoteObj.author,
+			_id: quoteObj._id,
+		});
+	};
+
+	// change status of quote to fav/not-fav for user
+	const handleFavClick = async () => {
+		console.log('handleFavClick');
+		const toggleFavQuote = { quoteId: quoteInfo._id, email: gState.email };
+		console.log('toggleFavQuote', toggleFavQuote);
+		console.log({ toggleFavQuote });
+
+		try {
+			const response = await fetch(gState.url + '/auth/favs', {
+				method: 'put',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(toggleFavQuote),
+			});
+			const json = await response.json();
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	const emptyWishListItem = {
@@ -98,6 +137,20 @@ function App() {
 				window.localStorage.setItem('token', JSON.stringify(response.token));
 				window.localStorage.setItem('email', JSON.stringify(response.email));
 				setGState({ ...gState, token: response.token, email: response.email });
+
+				console.log('response token', response.token);
+
+				//seeding data for demo user
+				const demoSeed = await fetch(url + '/demo/seed', {
+					method: 'post',
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: `bearer ${response.token}`,
+					},
+				});
+				const json = await demoSeed.json();
+				console.log('demo seeded', json);
+				getWishList(response.token);
 			}
 		} catch (error) {
 			console.log(error);
@@ -121,7 +174,6 @@ function App() {
 			// loop through DB items and push to appropriate temp list
 			for (let i of json) {
 				if (i.isLiked === true) {
-					console.log('liked?', i);
 					likes.push(i);
 				}
 				if (i.isComplete === true) {
@@ -151,7 +203,6 @@ function App() {
 			});
 			const response = await wishList.json();
 			console.log('newItem: ', response);
-
 			getWishList(gState.token);
 		} catch (error) {
 			console.log(error);
@@ -159,7 +210,6 @@ function App() {
 	};
 
 	const handleUpdate = async (updatedItem) => {
-		console.log('updateditem', updatedItem);
 		try {
 			const updatedItemList = await fetch(
 				gState.url + '/wishlist/' + updatedItem._id,
@@ -173,8 +223,6 @@ function App() {
 				}
 			);
 			const response = await updatedItemList.json();
-			//need to do more inspecting here
-			// setWishList(response);
 			getWishList(gState.token);
 		} catch (error) {
 			console.log(error);
@@ -183,9 +231,7 @@ function App() {
 
 	const handleCompleted = async (wishListItem) => {
 		try {
-			// wishListItem.isComplete = true;
 			wishListItem.isComplete = !wishListItem.isComplete;
-			console.log(wishListItem);
 
 			const completedItem = await fetch(
 				gState.url + '/wishlist/' + wishListItem._id,
@@ -199,8 +245,6 @@ function App() {
 				}
 			);
 			const response = await completedItem.json();
-			console.log('completedItem: ', response);
-			// setCompletedList(response);
 			getWishList(gState.token);
 		} catch (error) {
 			console.log(error);
@@ -210,7 +254,6 @@ function App() {
 	const handleLike = async (wishListItem) => {
 		try {
 			wishListItem.isLiked = !wishListItem.isLiked;
-			console.log(wishListItem);
 
 			const toggledLikeItem = await fetch(
 				gState.url + '/wishlist/' + wishListItem._id,
@@ -224,7 +267,6 @@ function App() {
 				}
 			);
 			const response = await toggledLikeItem.json();
-			console.log('liked/unliked Item: ', response);
 			getWishList(gState.token);
 		} catch (error) {
 			console.log(error);
@@ -244,7 +286,6 @@ function App() {
 				}
 			);
 			const response = await deletedItem.json();
-			console.log('deletedItem: ', response);
 			getWishList(gState.token);
 		} catch (error) {
 			console.log(error);
@@ -259,41 +300,53 @@ function App() {
 			setGState({ ...gState, token: token, email: email });
 			getWishList(token);
 		}
+		getQuote();
 	}, []);
 
 	return (
 		<GlobalContext.Provider value={{ gState, setGState }}>
 			<div className='App'>
 				<header>
-					<Header handleDemoUserClick={handleDemoUserClick} />
+					<Route
+						render={(rp) => (
+							<Header {...rp} handleDemoUserClick={handleDemoUserClick} />
+						)}
+					/>
 				</header>
-				<Switch>
-					<main>
+				<main>
+					<Switch>
 						<Route exact path='/'>
 							<h1 id='home-logo'>
 								<i class='fas fa-pause-circle'></i> pause.app
 							</h1>
-							<h3 className='welcome-msg'>
-								Welcome to our site! Sign up, sign in, or try a demo for help
-								making time for self-care.
-							</h3>
-							<Quote />
+							<h2 className='motto'>
+								pause<span className='blink_me1'>.</span> because mindful
+								self-care matters
+							</h2>
+							<AppDescription />
+							<h4 id='call-to-action'>
+								Sign up, sign in, or try a demo from the menu to access full
+								features.
+							</h4>
 						</Route>
 						<Route
 							path='/wishlist'
 							render={(rp) => {
 								return (
 									<>
-										<Quote />
+										<Quote
+											quoteInfo={quoteInfo}
+											getQuote={getQuote}
+											handleFavClick={handleFavClick}
+										/>
 										<WishList
 											{...rp}
-											// item={emptyWishListItem}
 											wishList={wishList}
 											handleCompleted={handleCompleted}
 											handleLike={handleLike}
 											handleDelete={handleDelete}
 											selectItem={selectItem}
-											// setWishList={setWishList}
+											handleDemoUserClick={handleDemoUserClick}
 										/>
 									</>
 								);
@@ -304,7 +357,11 @@ function App() {
 							render={(rp) => {
 								return (
 									<>
-										<Quote />
+										<Quote
+											quoteInfo={quoteInfo}
+											getQuote={getQuote}
+											handleFavClick={handleFavClick}
+										/>
 										<CompletedList
 											{...rp}
 											handleLike={handleLike}
@@ -336,12 +393,19 @@ function App() {
 							path='/editform'
 							render={(rp) => {
 								return (
-									<WishListForm
-										{...rp}
-										item={selectedItem}
-										handleSubmit={handleUpdate}
-										label='Update Item'
-									/>
+									<>
+										<Quote
+											quoteInfo={quoteInfo}
+											getQuote={getQuote}
+											handleFavClick={handleFavClick}
+										/>
+										<WishListForm
+											{...rp}
+											item={selectedItem}
+											handleSubmit={handleUpdate}
+											label='Update Item'
+										/>
+									</>
 								);
 							}}
 						/>
@@ -349,20 +413,68 @@ function App() {
 							path='/likeditems'
 							render={(rp) => {
 								return (
-									<LikedItems
-										{...rp}
-										likedList={likedList}
-										handleDelete={handleDelete}
-										handleLike={handleLike}
-									/>
+									<>
+										<Quote
+											quoteInfo={quoteInfo}
+											getQuote={getQuote}
+											handleFavClick={handleFavClick}
+										/>
+										<LikedItems
+											{...rp}
+											likedList={likedList}
+											handleDelete={handleDelete}
+											handleLike={handleLike}
+										/>
+									</>
 								);
 							}}
 						/>
-
-						<Route path='/signup' render={(rp) => <SignUpForm {...rp} />} />
-						<Route path='/login' render={(rp) => <LogInForm {...rp} />} />
-					</main>
-				</Switch>
+						<Route
+							path='/signup'
+							render={(rp) => (
+								<>
+									<Quote
+										quoteInfo={quoteInfo}
+										getQuote={getQuote}
+										handleFavClick={handleFavClick}
+									/>
+									<SignUpForm
+										{...rp}
+										handleDemoUserClick={handleDemoUserClick}
+									/>
+								</>
+							)}
+						/>
+						<Route
+							path='/login'
+							render={(rp) => (
+								<>
+									<Quote
+										quoteInfo={quoteInfo}
+										getQuote={getQuote}
+										handleFavClick={handleFavClick}
+									/>
+									<LogInForm {...rp} />
+								</>
+							)}
+						/>
+						<Route path='/favquotes'>
+							<>
+								<FavQuotes handleFavClick={handleFavClick} />
+							</>
+						</Route>
+						<Route path='/about'>
+							<>
+								<Quote
+									quoteInfo={quoteInfo}
+									getQuote={getQuote}
+									handleFavClick={handleFavClick}
+								/>
+								<About />
+							</>
+						</Route>
+					</Switch>
+				</main>
 				<footer>
 					<Footer />
 				</footer>
@@ -372,9 +484,3 @@ function App() {
 }
 
 export default App;
-
-///GET index of wishlist items
-///this should actually go in WishList component
-// const {gState, setGState} = React.useContext(GlobalCtx)
-
-//////////////////////////////////////////

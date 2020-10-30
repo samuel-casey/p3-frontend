@@ -5,6 +5,7 @@
 		h2 {
 			color: $sca-dark-blue;
 			margin: 1rem auto;
+			font-family: $serif;
 		}
 
 		display: flex;
@@ -20,7 +21,8 @@
 			flex-direction: column;
 			line-height: 3rem;
 			width: 70%;
-			height: 50vh;
+			height: fit-content;
+			font-family: $serif;
 
 			.form-text-input {
 				margin: 1rem;

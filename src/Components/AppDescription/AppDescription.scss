@@ -1,0 +1,46 @@
+@import "../../variables.scss";
+
+.description-section {
+    margin: 5px;
+    border: solid $sca-pink;
+    border-radius: 5px;
+
+    h4 {
+        color: $sca-gray;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+
+    .description {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        
+        .activity {
+        margin: 0 15px;
+
+            .icon {
+            font-size: 65px;
+            }
+
+            .wording {
+            color: $sca-gray;
+            }
+        }
+
+            
+        
+    }
+}
+
+@media(min-width: 768px) {
+    
+.description-section {
+
+  .description {
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 1;
+  }
+}
+
+}
