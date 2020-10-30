@@ -39,6 +39,11 @@ div.about-page{
         padding: 0.5rem;
         border: 0.5rem solid $sca-dark-blue;
 
+        i.fab.fa-github {
+            color: $sca-dark-blue;
+            font-size: 1.25rem;
+        }
+
         span.abouts {
             text-decoration: none;
             font-size: 2rem;
@@ -51,12 +56,13 @@ div.about-page{
         }
 
         img {
-            height: 85px;
-            width: 85px;
+            height: 150px;
+            width: 150px;
             border-radius: 50%;
             margin-top: 10px;
             border: 3px solid $sca-dark-blue;
-            }
+            object-fit: cover;
+        }
 
         #Sam {
             font-size: 23px;
