@@ -12,6 +12,7 @@ import LikedItems from './Components/LikedItems/LikedItems';
 import Header from './Components/Header/Header';
 import Footer from './Components/Footer/Footer';
 import FavQuotes from './Components/FavQuotes/FavQuotes';
+import AppDescription from './Components/AppDescription/AppDescription';
 
 export const GlobalContext = createContext(null);
 
@@ -283,6 +284,7 @@ function App() {
 								pause<span className='blink_me1'>.</span> because mindful
 								self-care matters
 							</h2>
+							<AppDescription />
 							{/* <hr></hr> */}
 							{/* <h4>
 								pause.app keeps track of: - your self-care wishlist, self-care
