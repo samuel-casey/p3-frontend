@@ -64,7 +64,12 @@ export default function CompletedList(props) {
 			</div>
 		);
 	});
-	const empty = 'Take 5 minutes for a wishlist item';
+	const empty = (
+		<div className='empty'>
+			Complete a wishlist activity to see completed items. You can do it!{' '}
+			<i class='far fa-smile'></i> <i class='far fa-thumbs-up'></i>
+		</div>
+	);
 	return (
 		<div className='list-page'>
 			<div className='page-title'>Completed Self-Care Activities</div>

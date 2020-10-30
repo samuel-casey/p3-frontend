@@ -66,7 +66,10 @@ export default function Header(props) {
 						<br></br>
 						<Nav.Link>
 							<button
-								onClick={() => props.handleDemoUserClick()}
+								onClick={() => {
+									props.handleDemoUserClick();
+									props.history.push('/wishlist');
+								}}
 								className='nav-btn'>
 								Demo
 							</button>

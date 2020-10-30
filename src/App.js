@@ -364,12 +364,15 @@ function App() {
 							path='/likeditems'
 							render={(rp) => {
 								return (
-									<LikedItems
-										{...rp}
-										likedList={likedList}
-										handleDelete={handleDelete}
-										handleLike={handleLike}
-									/>
+									<>
+										<Quote />
+										<LikedItems
+											{...rp}
+											likedList={likedList}
+											handleDelete={handleDelete}
+											handleLike={handleLike}
+										/>
+									</>
 								);
 							}}
 						/>
@@ -377,10 +380,24 @@ function App() {
 						<Route
 							path='/signup'
 							render={(rp) => (
-								<SignUpForm {...rp} handleDemoUserClick={handleDemoUserClick} />
+								<>
+									<Quote />
+									<SignUpForm
+										{...rp}
+										handleDemoUserClick={handleDemoUserClick}
+									/>
+								</>
 							)}
 						/>
-						<Route path='/login' render={(rp) => <LogInForm {...rp} />} />
+						<Route
+							path='/login'
+							render={(rp) => (
+								<>
+									<Quote />
+									<LogInForm {...rp} />
+								</>
+							)}
+						/>
 						<Route path='/about' component={About} />
 					</Switch>
 				</main>
