@@ -1,7 +1,7 @@
 import React, { useState, createContext, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './App.scss';
-import Navigation from './Components/Nav/Navigation';
+import About from './Components/About/About';
 import Quote from './Components/Quote/Quote';
 import WishList from './Components/WishList/WishList';
 import SignUpForm from './Components/SignUpForm/SignUpForm';
@@ -184,8 +184,6 @@ function App() {
 				}
 			);
 			const response = await updatedItemList.json();
-			//need to do more inspecting here
-			// setWishList(response);
 			getWishList(gState.token);
 		} catch (error) {
 			console.log(error);
@@ -271,8 +269,8 @@ function App() {
 				<header>
 					<Header handleDemoUserClick={handleDemoUserClick} />
 				</header>
-				<Switch>
-					<main>
+				<main>
+					<Switch>
 						<Route exact path='/'>
 							<h1 id='home-logo'>
 								<i class='fas fa-pause-circle'></i> pause.app
@@ -372,10 +370,16 @@ function App() {
 							}}
 						/>
 
-						<Route path='/signup' render={(rp) => <SignUpForm {...rp} />} />
+						<Route
+							path='/signup'
+							render={(rp) => (
+								<SignUpForm {...rp} handleDemoUserClick={handleDemoUserClick} />
+							)}
+						/>
 						<Route path='/login' render={(rp) => <LogInForm {...rp} />} />
-					</main>
-				</Switch>
+						<Route path='/about' component={About} />
+					</Switch>
+				</main>
 				<footer>
 					<Footer />
 				</footer>

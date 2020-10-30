@@ -56,22 +56,27 @@ export default function WishList(props) {
 	});
 
 	const loading = (
-		<>
+		<b>
 			<p>Patiently pausing while you add items</p>
 			<Spinner animation='grow' variant='light' size='sm' />
 			<Spinner animation='grow' variant='light' size='sm' />
 			<Spinner animation='grow' variant='light' size='sm' />
-		</>
+		</b>
 	);
 
 	const loggedInButtons = (
-		<button
-			className='form-btn'
-			onClick={() => {
-				props.history.push('/wishlistform');
-			}}>
-			<i class='fas fa-plus'></i> New Item
-		</button>
+		<>
+			<button
+				className='form-btn'
+				onClick={() => {
+					props.history.push('/wishlistform');
+				}}>
+				<i class='fas fa-plus'></i> New Item
+			</button>
+			<span onClick={() => document.location.reload()} className='refresh'>
+				<i class='fas fa-sync-alt'></i>
+			</span>
+		</>
 	);
 
 	const login = (
