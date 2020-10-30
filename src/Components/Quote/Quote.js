@@ -39,7 +39,7 @@ export default function Quote() {
 		console.log({ toggleFavQuote });
 
 		try {
-			const response = await fetch('http://localhost:4000' + '/auth/favs', {
+			const response = await fetch(url + '/auth/favs', {
 				method: 'put',
 				headers: {
 					'Content-Type': 'application/json',
@@ -48,10 +48,53 @@ export default function Quote() {
 			});
 			const json = await response.json();
 			console.log('json', json);
+
+//KIM's attempt at getting all the favorite quotes
+//run inside or outside handleClick function??
+//I think we need to send the email in the get request
+//but getting an error that GET can have a body??
+		const getQuotes = async () => {
+			console.log('email', gState.email)
+		const getQuotes = await fetch(url + '/auth/favs', {
+			method: "get",
+			headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(gState.email)
+		})
+		console.log("hi")
+		const quotes = await getQuotes.json()
+		setFavList(quotes)
+		console.log('favlist', favList)
+		}
+		getQuotes()
+	
+			
 		} catch (error) {
 			console.log(error);
 		}
 	};
+
+//KIM's attempt at getting all the favorite quotes
+//run outside handleClick function??
+	// const getQuotes = async () => {
+	// 	const response = await fetch(url + '/auth/favs', {
+	// 		method: "get",
+	// 		headers: {
+	// 			'Content-Type': 'application/json',
+	// 		},
+	// 		// body: JSON.stringify(gState.email)
+	// 	})
+	// 	const json = await response.json()
+	// 	setFavList(json)
+	// }
+	// React.useEffect(() => {
+	// 	getQuotes()
+	// }, [])
+	// console.log('favlist', favList)
+	
+
+
 
 	// const handleFav = async (favItem) => {
 	// 	try {
