@@ -8,10 +8,13 @@ export default function FavQuotes() {
 	const { url } = gState;
 
 	const getFavQuotes = async () => {
+		// using gState to get user only work sometimes -- switching to use localStorage bc it's more consistent
+		// something is likely going wrong with sign in process and this component isn't re-rendering whenever user logs in
 		const currentUser = {
 			email: JSON.parse(window.localStorage.getItem('email')),
 		};
-		console.log(typeof userEmail);
+
+		console.log(currentUser);
 		try {
 			const getQuotes = await fetch(url + '/auth/getFavs', {
 				method: 'put',
@@ -22,7 +25,6 @@ export default function FavQuotes() {
 			});
 			const quotes = await getQuotes.json();
 			setFavList(quotes);
-			console.log('favlist', favList);
 		} catch (error) {
 			console.log(error);
 		}
