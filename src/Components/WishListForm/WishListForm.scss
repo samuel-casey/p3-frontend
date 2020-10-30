@@ -1,9 +1,11 @@
 @import "../../variables.scss";
 
 .wishlist-form-page {
+    font-family: $serif;
+
 		h2 {
 			color: $sca-dark-blue;
-			margin: 1rem auto;
+            margin: 1rem auto;
 		}
 
 		display: flex;
@@ -19,10 +21,17 @@
 			flex-direction: column;
 			line-height: 3rem;
 			width: 70%;
-			height: 50vh;
+            height: fit-content;
+            
+            label {
+                color: $sca-dark-blue;
+                text-align: left;
+                margin: 0;
+                font-weight: bold;
+            }
 
 			.form-text-input {
-				margin: 1rem;
+				margin: 0.1rem;
 				background-color: $sca-gray;
 				width: 100%;
 				align-self: center;

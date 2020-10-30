@@ -1,5 +1,6 @@
 import React from 'react';
 import './LikedItems.scss';
+import { Link } from 'react-router-dom';
 
 export default function LikedItems(props) {
 	console.log('props', props);
@@ -41,6 +42,15 @@ export default function LikedItems(props) {
 
 	return (
 		<div className='list-page'>
+			<div className='wishlist-links'>
+				<Link to='/likeditems'>
+					<i class='far fa-star'></i>
+				</Link>
+				<Link to='/wishlist'>Wishlist</Link>
+				<Link to='/completedlist'>
+					<i class='fas fa-check'></i>
+				</Link>
+			</div>
 			<div className='page-title'>Activities I Liked Best</div>
 			{props.likedList.length > 0 ? likedItems : empty}
 		</div>

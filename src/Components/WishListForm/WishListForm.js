@@ -32,6 +32,7 @@ export default function WishListForm(props) {
 			<div className='wishlist-form'>
 				<h2>Add or Update an Item</h2>
 				<form onSubmit={handleSubmit}>
+					<label for='title'>Title</label>
 					<input
 						className='form-text-input'
 						type='text'
@@ -40,6 +41,7 @@ export default function WishListForm(props) {
 						placeholder='Title'
 						onChange={handleChange}
 					/>
+					<label for='category'>Category</label>
 					<input
 						className='form-text-input'
 						type='text'
@@ -48,6 +50,7 @@ export default function WishListForm(props) {
 						placeholder='Category'
 						onChange={handleChange}
 					/>
+					<label for='time_minutes'>Estimated length in minutes</label>
 					<input
 						type='number'
 						name='time_minutes'
