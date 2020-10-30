@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import './CompletedList.scss';
 import { GlobalContext } from '../../App';
+import { Link } from 'react-router-dom';
 
 export default function CompletedList(props) {
 	console.log(props.completedList);
@@ -72,6 +73,15 @@ export default function CompletedList(props) {
 	);
 	return (
 		<div className='list-page'>
+			<div className='wishlist-links'>
+				<Link to='/likeditems'>
+					<i class='far fa-star'></i>
+				</Link>
+				<Link to='/wishlist'>Wishlist</Link>
+				<Link to='/completedlist'>
+					<i class='fas fa-check'></i>
+				</Link>
+			</div>
 			<div className='page-title'>Completed Self-Care Activities</div>
 			{props.completedList.length > 0 ? completed : empty}
 		</div>

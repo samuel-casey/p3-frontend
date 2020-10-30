@@ -66,16 +66,18 @@ export default function WishList(props) {
 
 	const loggedInButtons = (
 		<>
-			<button
-				className='form-btn'
-				onClick={() => {
-					props.history.push('/wishlistform');
-				}}>
-				<i class='fas fa-plus'></i> New Item
-			</button>
-			<span onClick={() => document.location.reload()} className='refresh'>
-				<i class='fas fa-sync-alt'></i>
-			</span>
+			<div>
+				<button
+					className='form-btn'
+					onClick={() => {
+						props.history.push('/wishlistform');
+					}}>
+					<i class='fas fa-plus'></i> New Item
+				</button>
+				<span onClick={() => document.location.reload()} className='refresh'>
+					<i class='fas fa-sync-alt'></i>
+				</span>
+			</div>
 		</>
 	);
 
@@ -110,6 +112,15 @@ export default function WishList(props) {
 
 	return (
 		<div className='list-page'>
+			<div className='wishlist-links'>
+				<Link to='/likeditems'>
+					<i class='far fa-star'></i>
+				</Link>
+				<Link to='/wishlist'>Wishlist</Link>
+				<Link to='/completedlist'>
+					<i class='fas fa-check'></i>
+				</Link>
+			</div>
 			<div className='page-title'>My Self-Care Wish List</div>
 			{conditionalButtons}
 			{gState.token ? (
