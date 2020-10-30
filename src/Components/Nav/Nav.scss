@@ -1,0 +1,115 @@
+@import "../../variables.scss";
+@import "~bootstrap/scss/bootstrap";
+
+
+
+// Navbar.Toggle {
+//     color: green;
+// }
+//  #responsive-navbar-nav{
+//     color: black;
+// }
+button.navbar-toggler.collapsed {
+    color: white;
+}
+div.mr-auto.navbar-nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: left;
+    font-size: 25px;
+    color: white;
+    border-style: dashed;
+    width: 35%;
+
+}
+h3 {
+    text-decoration: underline;
+}
+h4 {
+    color: #FEC1AE;
+}
+    // #home {
+    //     color: white;
+    //     font-size: larger;
+    // }
+        .Links {
+            color: white;
+            background-color: #284c65;
+            font-size: 30px;
+            text-decoration: underline;
+            text-decoration-color: #FEC1AE;
+        }
+            h6 {
+                color: white;
+                border-style: groove;
+                background-color: #FEC1AE;
+            }
+
+        
+
+//   #dropdown-basic {
+//   font-size: 40px;
+//   color: #FEC1AE;
+//   background-color: #284C65;
+//   border-style: none;
+//   }
+//  #menu {
+//     font-size: 30px;
+//     background-color:  whitesmoke;
+//     }
+    // #dropdown-basic::after {
+    //     content: none;
+    // }
+//   @media  (min-width: 600px) {
+//     Nav.mr-auto {
+//       flex-direction: row0;
+    //   flex-wrap: wrap;
+    //   justify-content: center;
+//       justify-content: space-evenly;
+//       text-align: center;  
+//       width: 30%;
+//       height: 20%;
+      
+    //   border-style: double;
+    //   border-color: #FEC1AE;
+//       border-width: 5px; 
+//       background-color: #284C65;
+//         .Links {
+//             display: initial;
+//             color: white;
+//             font-size: 25px;
+        // }
+    
+        
+//                 p{
+//                     display: initial;
+//                     color: #284C65;
+//                     text-decoration: underline;
+//                     text-decoration-color: #FEC1AE;
+//                 }
+//   }
+//   #dropdown {
+//     // display: none;
+//   }
+//   }
+//   @media (min-width:750){
+//       nav{
+//           flex-direction: row;
+//           flex-wrap: nowrap;
+//           .Links {
+//             display: initial;
+//             color: #FEC1AE;
+//             font-size: 25px;
+//         }
+//             h6{
+//                 display: initial;
+//             }
+//                 p{
+//                     display: initial;
+//                     color: white;
+//                     text-decoration: underline;
+//                     text-decoration-color: #FEC1AE;
+//                 }
+//   }
+//       }
