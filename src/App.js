@@ -11,13 +11,12 @@ import CompletedList from './Components/CompletedList/CompletedList';
 import LikedItems from './Components/LikedItems/LikedItems';
 import Header from './Components/Header/Header';
 import Footer from './Components/Footer/Footer';
-import About from './Components/About/About'
+import FavQuotes from './Components/FavQuotes/FavQuotes';
 
 export const GlobalContext = createContext(null);
 
 function App() {
 	const [gState, setGState] = useState({
-		// url: 'http://localhost:4000', // TESTING URL
 		url: 'https://self-care-app-backend.herokuapp.com',
 		token: null,
 		email: null,
@@ -398,7 +397,17 @@ function App() {
 								</>
 							)}
 						/>
-						<Route path='/about' component={About} />
+						<Route path='/favquotes'>
+							<>
+								<FavQuotes />
+							</>
+						</Route>
+						<Route path='/about'>
+							<>
+								<About />
+								<Quote />
+							</>
+						</Route>
 					</Switch>
 				</main>
 				<footer>

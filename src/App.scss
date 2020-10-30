@@ -24,11 +24,12 @@ main {
     margin: 10px 30px;
   }
 
-  h1 {
+  h1#home-logo {
     color: $sca-pink;
     font-size: 40px;
     margin-top: 150px;
     text-align: left;
+    font-family: $sans-serif;
   }
 
   h2.motto {

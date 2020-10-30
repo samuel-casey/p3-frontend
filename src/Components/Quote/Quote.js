@@ -13,12 +13,12 @@ export default function Quote() {
 		author: '',
 		_id: '',
 	});
-  
+
 	const { url } = gState;
-  
+
 	let author;
 	let quote;
-  
+
 	const getQuote = async () => {
 		const response = await fetch(url + '/quote');
 		const quoteList = await response.json();
@@ -30,16 +30,16 @@ export default function Quote() {
 			_id: quoteObj._id,
 		});
 	};
-  
-  const handleFavClick = async () => {
-    console.log('handleFavClick');
-    const toggleFavQuote = { quoteId: quoteInfo._id, email: gState.email };
-    console.log('toggleFavQuote', toggleFavQuote);
-    console.log({ toggleFavQuote });
-    setFavColor(!favColor);
-    console.log(favColor);
 
-	  try {
+	const handleFavClick = async () => {
+		console.log('handleFavClick');
+		const toggleFavQuote = { quoteId: quoteInfo._id, email: gState.email };
+		console.log('toggleFavQuote', toggleFavQuote);
+		console.log({ toggleFavQuote });
+		setFavColor(!favColor);
+		console.log(favColor);
+
+		try {
 			const response = await fetch(url + '/auth/favs', {
 				method: 'put',
 				headers: {
@@ -48,16 +48,14 @@ export default function Quote() {
 				body: JSON.stringify(toggleFavQuote),
 			});
 			const json = await response.json();
-		 } catch (error) {
+		} catch (error) {
 			console.log(error);
-		 }
-	  };
+		}
+	};
 
 	useEffect(() => {
 		getQuote();
 	}, []);
-
-
 
 	return (
 		<div className='quote'>

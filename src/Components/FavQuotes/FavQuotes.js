@@ -1,14 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { GlobalContext } from '../../App';
 import './FavQuotes.scss';
 
-export default function FavQuotes(props) {
-	const favList = {
-		author: 'Herman Hesse',
-		quote: 'Something insightful',
-		theme: 'Acceptance',
+export default function FavQuotes() {
+	const [favList, setFavList] = useState([]);
+	const { gState } = useContext(GlobalContext);
+	const { url } = gState;
+
+	const getFavQuotes = async () => {
+		const currentUser = {
+			email: JSON.parse(window.localStorage.getItem('email')),
+		};
+		console.log(typeof userEmail);
+		try {
+			const getQuotes = await fetch(url + '/auth/getFavs', {
+				method: 'put',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(currentUser),
+			});
+			const quotes = await getQuotes.json();
+			setFavList(quotes);
+			console.log('favlist', favList);
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
-	// const favQuotes = props.favList.map((item, index) => {
+	useEffect(() => {
+		getFavQuotes();
+	}, []);
+
 	const favQuotes = favList.map((item, index) => {
 		return (
 			<div className='fav-item' key={index}>
@@ -19,15 +42,6 @@ export default function FavQuotes(props) {
 						<p className='category'>{item.theme}</p>
 					</div>
 				</div>
-				<div className='item-btns'>
-					<button
-						className='item-btns delete'
-						onClick={() => {
-							props.handleDelete(item);
-						}}>
-						Delete
-					</button>
-				</div>
 			</div>
 		);
 	});
@@ -36,7 +50,6 @@ export default function FavQuotes(props) {
 	return (
 		<>
 			<div className='page-title'>Favorite Quotes</div>
-			{/* {props.favList.length > 0 ? favQuotes : empty} */}
 			{favList.length > 0 ? favQuotes : empty}
 		</>
 	);

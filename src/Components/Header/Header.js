@@ -1,9 +1,8 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
 import LogOutBtn from '../LogOutBtn/LogOutBtn';
 import { GlobalContext } from '../../App';
 import './Header.scss';
-import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { Nav, Navbar } from 'react-bootstrap';
 
 export default function Header(props) {
 	const { gState, setGState } = useContext(GlobalContext);
@@ -21,7 +20,7 @@ export default function Header(props) {
 			<Navbar expand='md'>
 				<Navbar.Brand href='/'>
 					<div id='nav-logo'>
-						<i class='fas fa-pause-circle'></i> pause.app
+						<i className='fas fa-pause-circle'></i> pause.app
 					</div>
 				</Navbar.Brand>
 				<Navbar.Toggle aria-controls='basic-navbar-nav' id='hamburger' />
@@ -53,7 +52,7 @@ export default function Header(props) {
 			<Navbar expand='md'>
 				<Navbar.Brand href='/'>
 					<div id='nav-logo'>
-						<i class='fas fa-pause-circle'></i> pause.app
+						<i className='fas fa-pause-circle'></i> pause.app
 					</div>
 				</Navbar.Brand>
 				<Navbar.Toggle
