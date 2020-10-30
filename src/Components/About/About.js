@@ -23,25 +23,6 @@ export default function About() {
 				<br />
 				<h1 id='about'>Team</h1>
 				<section className='custom-container'>
-					<div id='Sam' className='us'>
-						<div className='pics'>
-							<img src='https://res.cloudinary.com/scimgcloud/image/upload/v1600435704/headshot-ideo.jpg' />
-						</div>
-						<span className='abouts'>
-							Sam{' '}
-							<a href='https://github.com/samuel-casey/' target='blank'>
-								<i className='fab fa-github'></i>
-							</a>
-						</span>
-						<p>
-							Sam is a full-stack web developer from Boston, MA with a passion
-							for using his tech skills to help people solve problems in their
-							daily lives. His favorite thing to do for self-care is to go for
-							long walks and hikes in nature. He serves as this project's tech
-							lead, responsible for architecture, planning, and incorporating
-							teammates' work.
-						</p>
-					</div>
 					<div id='Jaime' className='us'>
 						<div className='pics'>
 							<img src='https://res.cloudinary.com/dv01780vo/image/upload/v1604070046/received_2893661924081693_2_ysiho9.jpg' />
@@ -59,6 +40,27 @@ export default function About() {
 							uses that thought process on the many projects that he has worked
 							on to finish them. He serves as one of the main backend developers
 							for the app, creating the controllers and seeding the data.
+						</p>
+					</div>
+					<div id='Sam' className='us'>
+						<div className='pics'>
+							<img src='https://res.cloudinary.com/scimgcloud/image/upload/v1600435704/headshot-ideo.jpg' />
+						</div>
+						<span className='abouts'>
+							Sam{' '}
+							<a href='https://github.com/samuel-casey/' target='blank'>
+								<i className='fab fa-github'></i>
+							</a>
+						</span>
+						<p>
+							Sam is a full-stack web developer residing in Boston with a
+							passion for using his tech skills to help people solve problems in
+							their daily lives. In the past, Sam has worked in strategy and
+							product roles on financial services and cryptocurrency teams. His
+							favorite things to do for self-care are to go for long walks and
+							hikes in nature. He served as this project's tech lead,
+							responsible primarily for planning, user authentication, and
+							deployment.
 						</p>
 					</div>
 					<div id='Kim' className='us'>
@@ -91,14 +93,12 @@ export default function About() {
 						</span>
 						<p>
 							Q is a full stack web developer in the city of Los Angeles,
-							California. He is an animal training turned software developer and
-							technical skills are increasing day by day. This is the third
-							project he has worked on, but the first in which group
-							collaboration was required. He is pleased with the results.
-							Specifically he was tasked with the About page and constructing
-							the navigation bar for the front end, and working on some of the
-							controllers and models on the backend. His go-to self care
-							activities are hiking and meditation.
+							California. He is an animal trainer turned software developer.
+							This is the third project he has worked on, and the first in which
+							group collaboration was required. Q was primarily responsible the
+							About page and constructing the navigation bar for the front end,
+							and working on some of the controllers and models on the backend.
+							His go-to self care activities are hiking and meditation.
 						</p>
 					</div>
 				</section>
