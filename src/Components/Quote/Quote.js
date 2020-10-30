@@ -6,7 +6,7 @@ import { GlobalContext } from '../../App';
 export default function Quote() {
 	const { gState, setGState } = useContext(GlobalContext);
 
-	const [favList, setFavList] = useState();
+	const [favColor, setFavColor] = useState(false);
 
 	const [quoteInfo, setQuoteInfo] = useState({
 		quote: '',
@@ -37,6 +37,8 @@ export default function Quote() {
 		const toggleFavQuote = { quoteId: quoteInfo._id, email: gState.email };
 		console.log('toggleFavQuote', toggleFavQuote);
 		console.log({ toggleFavQuote });
+		setFavColor(!favColor);
+		console.log(favColor);
 
 		try {
 			const response = await fetch('http://localhost:4000' + '/auth/favs', {
@@ -47,46 +49,24 @@ export default function Quote() {
 				body: JSON.stringify(toggleFavQuote),
 			});
 			const json = await response.json();
-			console.log('json', json);
 		} catch (error) {
 			console.log(error);
 		}
 	};
 
-	// const handleFav = async (favItem) => {
-	// 	try {
-	// 		favItem.isFav = !favItem.isFav;
-	// 		console.log(favItem);
-	// 		const toggleFavItem = await fetch(gState.url + '/' + favItem._id, {
-	// 			method: 'put',
-	// 			headers: {
-	// 				'Content-Type': 'application/json',
-	// 				Authorization: `bearer ${gState.token}`,
-	// 			},
-	// 			body: JSON.stringify(favItem),
-	// 		});
-	// 		const response = await toggleFavItem.json();
-	// 		console.log('faved/unfaved Quote: ', response);
-	// 		getFavList(gState.token);
-	// 	} catch (error) {
-	// 		console.log(error);
-	// 	}
-	// };
-
 	return (
 		<div className='quote'>
 			<div className='quote-body'>
 				<p className='random-quote'>
-					{quoteInfo.quote} <br></br>-{quoteInfo.author}
+					{quoteInfo.quote}
+					<p className='author'>{`${quoteInfo.author}`}</p>
 				</p>
 			</div>
-			{/* <Route path='/auth/favs'> */}
-			<button
-				className={quoteInfo.isFav ? 'btn-fav' : 'btn-notfav'}
+			<div
+				className={favColor ? 'quote-btn btn-fav' : 'quote-btn btn-not-fav'}
 				onClick={() => handleFavClick()}>
-				<i class='far fa-heart'></i>
-			</button>
-			{/* </Route> */}
+				<i className='far fa-heart'></i>
+			</div>
 		</div>
 	);
 }
