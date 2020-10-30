@@ -15,7 +15,7 @@ export default function About() {
         <div className='section'>section</div>
         <section className ='custom-container'>
         <div className='pairs'>
-        <div id ='Sam' className='us'>content here<span className='abouts'>about sam</span><div className='pics'><img src='https://images.unsplash.com/photo-1490718720478-364a07a997cd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=60'/> s</div></div>
+        <div id ='Sam' className='us'>content here<span className='abouts'>about sam</span><div className='pics'><img src='https://images.unsplash.com/photo-1490718720478-364a07a997cd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=60'/></div></div>
         //for sepertion
         <div id ='Jaime' className='us'><div className='pics'><img src='https://images.unsplash.com/photo-1501673618753-48ce9418287b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=60'/></div><span className='abouts'>about jaime</span>content here</div>
         </div>
