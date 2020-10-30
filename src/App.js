@@ -27,12 +27,50 @@ function App() {
 	const [wishList, setWishList] = useState([]);
 	const [completedList, setCompletedList] = useState([]);
 	const [likedList, setLikedList] = useState([]);
-
+	const [quoteInfo, setQuoteInfo] = useState({
+		quote: '',
+		author: '',
+		_id: '',
+	});
 	const [selectedItem, setSelectedItem] = useState();
 
 	const selectItem = (item) => {
 		console.log('selecteditem', item);
 		setSelectedItem(item);
+	};
+
+	// get quote from DB and render to page
+	const getQuote = async () => {
+		const response = await fetch(gState.url + '/quote');
+		const quoteList = await response.json();
+		const randomNumber = Math.floor(Math.random() * quoteList.length);
+		const quoteObj = quoteList[randomNumber];
+		setQuoteInfo({
+			quote: quoteObj.quote,
+			author: quoteObj.author,
+			_id: quoteObj._id,
+		});
+	};
+
+	// change status of quote to fav/not-fav for user
+	const handleFavClick = async () => {
+		console.log('handleFavClick');
+		const toggleFavQuote = { quoteId: quoteInfo._id, email: gState.email };
+		console.log('toggleFavQuote', toggleFavQuote);
+		console.log({ toggleFavQuote });
+
+		try {
+			const response = await fetch(gState.url + '/auth/favs', {
+				method: 'put',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(toggleFavQuote),
+			});
+			const json = await response.json();
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	const emptyWishListItem = {
@@ -261,6 +299,7 @@ function App() {
 			setGState({ ...gState, token: token, email: email });
 			getWishList(token);
 		}
+		getQuote();
 	}, []);
 
 	return (
@@ -293,14 +332,17 @@ function App() {
 								Sign up, sign in, or try a demo for help making time for
 								self-care.
 							</h4>
-							<Quote />
 						</Route>
 						<Route
 							path='/wishlist'
 							render={(rp) => {
 								return (
 									<>
-										<Quote />
+										<Quote
+											quoteInfo={quoteInfo}
+											getQuote={getQuote}
+											handleFavClick={handleFavClick}
+										/>
 										<WishList
 											{...rp}
 											wishList={wishList}
@@ -319,7 +361,11 @@ function App() {
 							render={(rp) => {
 								return (
 									<>
-										<Quote />
+										<Quote
+											quoteInfo={quoteInfo}
+											getQuote={getQuote}
+											handleFavClick={handleFavClick}
+										/>
 										<CompletedList
 											{...rp}
 											handleLike={handleLike}
@@ -351,12 +397,19 @@ function App() {
 							path='/editform'
 							render={(rp) => {
 								return (
-									<WishListForm
-										{...rp}
-										item={selectedItem}
-										handleSubmit={handleUpdate}
-										label='Update Item'
-									/>
+									<>
+										<Quote
+											quoteInfo={quoteInfo}
+											getQuote={getQuote}
+											handleFavClick={handleFavClick}
+										/>
+										<WishListForm
+											{...rp}
+											item={selectedItem}
+											handleSubmit={handleUpdate}
+											label='Update Item'
+										/>
+									</>
 								);
 							}}
 						/>
@@ -365,7 +418,11 @@ function App() {
 							render={(rp) => {
 								return (
 									<>
-										<Quote />
+										<Quote
+											quoteInfo={quoteInfo}
+											getQuote={getQuote}
+											handleFavClick={handleFavClick}
+										/>
 										<LikedItems
 											{...rp}
 											likedList={likedList}
@@ -380,7 +437,11 @@ function App() {
 							path='/signup'
 							render={(rp) => (
 								<>
-									<Quote />
+									<Quote
+										quoteInfo={quoteInfo}
+										getQuote={getQuote}
+										handleFavClick={handleFavClick}
+									/>
 									<SignUpForm
 										{...rp}
 										handleDemoUserClick={handleDemoUserClick}
@@ -392,20 +453,28 @@ function App() {
 							path='/login'
 							render={(rp) => (
 								<>
-									<Quote />
+									<Quote
+										quoteInfo={quoteInfo}
+										getQuote={getQuote}
+										handleFavClick={handleFavClick}
+									/>
 									<LogInForm {...rp} />
 								</>
 							)}
 						/>
 						<Route path='/favquotes'>
 							<>
-								<FavQuotes />
+								<FavQuotes handleFavClick={handleFavClick} />
 							</>
 						</Route>
 						<Route path='/about'>
 							<>
+								<Quote
+									quoteInfo={quoteInfo}
+									getQuote={getQuote}
+									handleFavClick={handleFavClick}
+								/>
 								<About />
-								<Quote />
 							</>
 						</Route>
 					</Switch>
