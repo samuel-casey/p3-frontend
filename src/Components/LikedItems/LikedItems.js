@@ -16,24 +16,28 @@ export default function LikedItems(props) {
 				</div>
 				<div className='item-btns'>
 					<button
-							className={item.isLiked ? 'btn-liked' : 'btn-notliked'}
-							onClick={() => {
-								props.handleLike(item);
-							}}>
-							<i class="far fa-star"></i>
-						</button>
+						className={item.isLiked ? 'btn-liked' : 'btn-notliked'}
+						onClick={() => {
+							props.handleLike(item);
+						}}>
+						<i class='far fa-star'></i>
+					</button>
 					<button
 						className='delete'
 						onClick={() => {
 							props.handleDelete(item);
 						}}>
-						<i class="fas fa-times"></i>
+						<i class='fas fa-times'></i>
 					</button>
 				</div>
 			</div>
 		);
 	});
-	const empty = 'The activities you like best will be saved here';
+	const empty = (
+		<div className='empty'>
+			'The activities you like best will be saved here
+		</div>
+	);
 
 	return (
 		<div className='list-page'>
