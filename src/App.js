@@ -267,7 +267,11 @@ function App() {
 		<GlobalContext.Provider value={{ gState, setGState }}>
 			<div className='App'>
 				<header>
-					<Header handleDemoUserClick={handleDemoUserClick} />
+					<Route
+						render={(rp) => (
+							<Header {...rp} handleDemoUserClick={handleDemoUserClick} />
+						)}
+					/>
 				</header>
 				<main>
 					<Switch>
