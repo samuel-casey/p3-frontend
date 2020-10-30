@@ -5,19 +5,21 @@ export default function About() {
 	return (
 		<>
 			<div className='about-page'>
-				<h1 id='about'>About</h1>
-				<div id='intro'>
-					Welcome to the *insert name here* App. Constructed by yours truly With
-					our App our goal is to bring a better sense of self through
-					motivation, goal structure,and help improving organisational skills.
-				</div>
+				<h1 id='about'>About pause.app</h1>
+				<div id='intro'>pause.app was built as part of a General Assembly</div>
 				<br />
+				<h1 id='about'>Team</h1>
 				<section className='custom-container'>
 					<div id='Sam' className='us'>
 						<div className='pics'>
-							<img src='https://images.unsplash.com/photo-1490718720478-364a07a997cd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=60' />
+							<img src='https://res.cloudinary.com/scimgcloud/image/upload/v1600435704/headshot-ideo.jpg' />
 						</div>
-						<span className='abouts'>Sam</span>
+						<span className='abouts'>
+							Sam{' '}
+							<a href='https://github.com/samuel-casey/' target='blank'>
+								<i className='fab fa-github'></i>
+							</a>
+						</span>
 						<p>
 							Sam is a full-stack web developer from Boston, MA with a passion
 							for using his tech skills to help people solve problems in their
@@ -29,23 +31,39 @@ export default function About() {
 					</div>
 					<div id='Jaime' className='us'>
 						<div className='pics'>
-							<img src='https://images.unsplash.com/photo-1501673618753-48ce9418287b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=60' />
+							<img src='https://res.cloudinary.com/dv01780vo/image/upload/v1604070046/received_2893661924081693_2_ysiho9.jpg' />
 						</div>
-						<span className='abouts'>Jaime</span>
-						<p>content here</p>
+						<span className='abouts'>
+							Jaime{' '}
+							<a href='https://github.com/jb0nd87 ' target='blank'>
+								<i className='fab fa-github'></i>
+							</a>
+						</span>
+						<p>Jaime is a full-stack web developer from the San Francisco Bay Area. He has a passion for rock climbing which involves taking time to figure out a way to get to the top quickly and safely. He uses that thought process on the many projects that he has worked on to finish them. He serves as one of the main backend developers for the app, creating the controllers and seeding the data.</p>
 					</div>
 					<div id='Kim' className='us'>
 						<div className='pics'>
 							<img src='https://res.cloudinary.com/dzxytz23k/image/upload/v1604071747/SEI%20-%20Project%202/Kosuda_Kim_SharePoint_thz0g4.jpg' />
 						</div>{' '}
-						<span className='abouts'>Kim</span>
+
+						<span className='abouts'>
+							Kim{' '}
+							<a href='https://github.com/kimrass14/' target='blank'>
+								<i className='fab fa-github'></i>
+							</a>
+						</span>
 						<p>Kim is a forensic accountant turned software engineer and resides outside of Chicago. Her go-to self care activities are working out, spending undivided attention with family and meditating. Her main responsibilties were on the frontend creating components and button functionality.</p>
 					</div>
 					<div id='Q' className='us'>
 						<div className='pics'>
 							<img src='https://ca.slack-edge.com/T0351JZQ0-U019AALH40G-100389b693e6-512' />
 						</div>
-						<span className='abouts'>Q</span>
+						<span className='abouts'>
+							Q{' '}
+							<a href='https://github.com/theletterQ1' target='blank'>
+								<i className='fab fa-github'></i>
+							</a>
+						</span>
 						<p>Q is a full stack web developer in the city of Los Angeles, California. He is an animal training turned software developer and technical skills are increasing day by day. This is the third project he has worked on, but the first in which group collaboration was required. He is pleased with the results. Specifically he was tasked with the About page and constructing the navigation bar for the front end, and working on some of the controllers and models on the backend. His go-to self care activities are hiking and meditation.</p>
 					</div>
 				</section>

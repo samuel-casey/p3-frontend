@@ -1,32 +1,7 @@
 @import '../../variables.scss';
 
-.fav-quotes-page {
-	.fav-item {
-		display: flex;
-		justify-content: space-between;
-	}
 
-	display: flex;
-	flex-direction: column;
-	width: 80vw;
-	align-items: center;
-	margin: 0 auto;
-	background: $sca-pink;
-
-	.second-row {
-		display: flex;
-	}
-
-	.time {
-		margin-left: 20px;
-	}
-	.category {
-		margin-left: 50px;
-	}
-
-	.item-btns {
-		display: block;
-		width: 50px;
-		margin-right: 20px;
-	}
+#fav-quotes-title {
+		color: $sca-pink !important;
+		text-align: center;
 }
