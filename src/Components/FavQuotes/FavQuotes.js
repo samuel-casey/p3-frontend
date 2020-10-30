@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../App';
 import './FavQuotes.scss';
+import Quote from '../Quote/Quote';
 
-export default function FavQuotes() {
+export default function FavQuotes(props) {
 	const [favList, setFavList] = useState([]);
 	const { gState } = useContext(GlobalContext);
 	const { url } = gState;
@@ -34,17 +35,14 @@ export default function FavQuotes() {
 		getFavQuotes();
 	}, []);
 
-	const favQuotes = favList.map((item, index) => {
+	const favQuotes = favList.map((quote, index) => {
 		return (
-			<div className='fav-item' key={index}>
-				<div className='item-info'>
-					<p className='title'>{item.quote}</p>
-					<div className='second-row'>
-						<p className='author'>{item.author}</p>
-						<p className='category'>{item.theme}</p>
-					</div>
-				</div>
-			</div>
+			<Quote
+				favPage={true}
+				quoteInfo={quote}
+				key={index}
+				handleFavClick={props.handleFavClick}
+			/>
 		);
 	});
 	const empty = (
