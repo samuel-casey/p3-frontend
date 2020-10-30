@@ -1,0 +1,39 @@
+@import "../../variables.scss";
+
+.description-section {
+    margin: 5px;
+    border: solid $sca-pink;
+    border-radius: 5px;
+
+    h3 {
+        color: $sca-gray;
+        margin-bottom: 20px;
+    }
+
+    .description {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+        
+        .activity {
+        margin: 0 15px;
+
+            .icon {
+            font-size: 65px;
+            }
+
+            .wording {
+            color: $sca-gray;
+            }
+        }
+
+            
+        
+    }
+}
+
+@media(min-width: 1024px) {
+    h3 {
+        color: red;
+    }
+
+}

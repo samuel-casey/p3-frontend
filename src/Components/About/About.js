@@ -39,23 +39,24 @@ export default function About() {
 								<i className='fab fa-github'></i>
 							</a>
 						</span>
-						<p>content here</p>
+						<p>Jaime is a full-stack web developer from the San Francisco Bay Area. He has a passion for rock climbing which involves taking time to figure out a way to get to the top quickly and safely. He uses that thought process on the many projects that he has worked on to finish them. He serves as one of the main backend developers for the app, creating the controllers and seeding the data.</p>
 					</div>
 					<div id='Kim' className='us'>
 						<div className='pics'>
-							<img src='https://images.unsplash.com/photo-1586490915014-b2490ffd4727?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=60' />
+							<img src='https://res.cloudinary.com/dzxytz23k/image/upload/v1604071747/SEI%20-%20Project%202/Kosuda_Kim_SharePoint_thz0g4.jpg' />
 						</div>{' '}
+
 						<span className='abouts'>
 							Kim{' '}
 							<a href='https://github.com/kimrass14/' target='blank'>
 								<i className='fab fa-github'></i>
 							</a>
 						</span>
-						<p>content here</p>
+						<p>Kim is a forensic accountant turned software engineer and resides outside of Chicago. Her go-to self care activities are working out, spending undivided attention with family and meditating. Her main responsibilties were on the frontend creating components and button functionality.</p>
 					</div>
 					<div id='Q' className='us'>
 						<div className='pics'>
-							<img src='https://images.unsplash.com/photo-1537815749002-de6a533c64db?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60' />
+							<img src='https://ca.slack-edge.com/T0351JZQ0-U019AALH40G-100389b693e6-512' />
 						</div>
 						<span className='abouts'>
 							Q{' '}
@@ -63,7 +64,7 @@ export default function About() {
 								<i className='fab fa-github'></i>
 							</a>
 						</span>
-						<p>content here</p>
+						<p>Q is a full stack web developer in the city of Los Angeles, California. He is an animal training turned software developer and technical skills are increasing day by day. This is the third project he has worked on, but the first in which group collaboration was required. He is pleased with the results. Specifically he was tasked with the About page and constructing the navigation bar for the front end, and working on some of the controllers and models on the backend. His go-to self care activities are hiking and meditation.</p>
 					</div>
 				</section>
 			</div>
