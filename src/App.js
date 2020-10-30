@@ -283,12 +283,12 @@ function App() {
 								pause<span className='blink_me1'>.</span> because mindful
 								self-care matters
 							</h2>
-							<hr></hr>
-							<h4>
-								pause.app keeps track of your self-care wishlist, self-care
-								activities you have completed, the self-care activities you
-								liked best, and motivational quotes that inspire you.
-							</h4>
+							{/* <hr></hr> */}
+							{/* <h4>
+								pause.app keeps track of: - your self-care wishlist, self-care
+								activities you have completed - the self-care activities you
+								liked best - motivational quotes that inspire you.
+							</h4> */}
 							<h4 id='call-to-action'>
 								Sign up, sign in, or try a demo for help making time for
 								self-care.
