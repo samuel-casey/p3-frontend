@@ -26,8 +26,40 @@ export default function SignUpForm(props) {
 	// handle sign up of new user
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		props.handleSignUp();
-		props.history.push('/wishlist');
+		const { email, password, confirmPassword } = formData;
+
+		let newUser;
+
+		if (password === confirmPassword) {
+			newUser = { email, password };
+		} else {
+			alert('Woops! Your passwords do not match. Please try again.');
+			document.location.reload();
+		}
+		try {
+			const user = await fetch(url + '/auth/signup', {
+				method: 'post',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(newUser),
+			});
+			const response = await user.json();
+			if (response.error) {
+				setErrorMsg(
+					'An error occurred while trying to sign you up. Please try again. If you think you may already have an account under this email, please try logging in instead.'
+				);
+				setAttempted(attempted + 1);
+				setFormData(emptyForm);
+			} else {
+				props.history.push('/login');
+			}
+		} catch (error) {
+			console.log('err', error);
+			alert(
+				'An error occurred while attempting to sign you up. Please try again'
+			);
+		}
 	};
 
 	const handleChange = (e) => {
